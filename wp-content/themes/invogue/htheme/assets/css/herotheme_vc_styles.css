@@ -1,0 +1,260 @@
+/* TOP CV BAR STYLING */
+.vc_navbar{
+    /* background-color:#101010 !important; */
+}
+
+/* VC POPUP HEAD STYLING */
+.vc_ui-panel-header-container{
+    background-color:#DC4551 !important; background-image:url(../images/settings/bg_hf_logo.png) !important; background-position:center right !important;
+}
+
+/* ELEMENT CONTAINER STYLING */
+.vc_ui-panel-content-container{
+    background-color:#FFF !important;
+}
+
+.vc_el-container .vc_element-description{
+    width:100% !important; display:table !important; position:relative !important; top:auto !important; left:auto !important; padding:5px 0 !important; margin-bottom:5px !important;
+}
+
+.vc_add-element-container .wpb-content-layouts a{
+    padding:0 !important; text-align:center;
+}
+
+.vc_element-icon{
+    width:90px !important; display:table !important; margin:0 auto !important; position:relative !important; top:auto !important; left:auto !important; margin-bottom:11px !important; text-align:center !important;
+}
+
+.wpb-elements-list{
+    background-color:#2A2F32;
+}
+
+.vc_add-element-container .wpb-content-layouts li{
+    height:120px !important; margin:0 0 5px 0 !important; background-color:#2A2F32 !important; border:1px solid #2A2F32 !important;
+    -moz-box-shadow:    inset 0 0 1px #666;
+    -webkit-box-shadow: inset 0 0 1px #666;
+    box-shadow:         inset 0 0 1px #666;
+}
+
+.vc_add-element-container .wpb-content-layouts li:hover{
+    background-color: #373E42  !important;
+    cursor: pointer !important;
+    -webkit-transition: background-color 0.2s ease-out !important;
+    -moz-transition: background-color 0.2s ease-out !important;
+    -o-transition: background-color 0.2s ease-out !important;
+    transition: background-color 0.2s ease-out !important;
+    -moz-box-shadow:    inset 0 0 1px #FFF;
+    -webkit-box-shadow: inset 0 0 1px #FFF;
+    box-shadow:         inset 0 0 1px #FFF;
+}
+
+.vc_general.vc_ui-tabs-line>.vc_active>.vc_ui-tabs-line-trigger{
+    background-color:#25292C !important; color:#FFF !important;
+}
+
+.vc_add-element-container .wpb-content-layouts li .vc_el-container{
+    height:120px !important;
+}
+
+.vc_add-element-container .wpb-content-layouts a{
+    color:#AAAAAA;
+}
+
+.vc_add-element-container .wpb-content-layouts i{
+    color:#FFFFFF !important;
+}
+
+.htheme_banner_icon{
+    background-image:url(../images/settings/icon_banner.png) !important; background-position:center !important;
+}
+
+.htheme_woolist_icon{
+    background-image:url(../images/settings/icon_woolist.png) !important; background-position:center !important;
+}
+
+.htheme_title_icon{
+    background-image:url(../images/settings/icon_title.png) !important; background-position:center !important;
+}
+
+.htheme_blog_icon{
+    background-image:url(../images/settings/icon_blog_split.png) !important; background-position:center !important;
+}
+
+.htheme_blog_carousel_icon{
+    background-image:url(../images/settings/icon_blog.png) !important; background-position:center !important;
+}
+
+.htheme_promo_icon{
+    background-image:url(../images/settings/icon_promo.png) !important; background-position:center !important;
+}
+
+.htheme_woocol_icon{
+    background-image:url(../images/settings/icon_woocol.png) !important; background-position:center !important;
+}
+
+.htheme_testimonial_icon{
+    background-image:url(../images/settings/icon_testimonial.png) !important; background-position:center !important;
+}
+
+.htheme_instagram_icon{
+    background-image:url(../images/settings/icon_instagram.png) !important; background-position:center !important;
+}
+
+.htheme_launch_icon{
+    background-image:url(../images/settings/icon_launch.png) !important; background-position:center !important;
+}
+
+.htheme_look_icon{
+    background-image:url(../images/settings/icon_look.png) !important; background-position:center !important;
+}
+
+.htheme_imgcarousel_icon{
+    background-image:url(../images/settings/icon_imgcarousel.png) !important; background-position:center !important;
+}
+
+.htheme_woocategory_icon{
+    background-image:url(../images/settings/icon_woocategory.png) !important; background-position:center !important;
+}
+
+.htheme_topten_icon{
+    background-image:url(../images/settings/icon_topten.png) !important; background-position:center !important;
+}
+
+.htheme_lookbooks_icon{
+    background-image:url(../images/settings/icon_lookbook.png) !important; background-position:center !important;
+}
+
+.htheme_contact_icon{
+    background-image:url(../images/settings/icon_contact.png) !important; background-position:center !important;
+}
+
+.htheme_signup_icon{
+    background-image:url(../images/settings/icon_signup.png) !important; background-position:center !important;
+}
+
+.htheme_map_icon{
+    background-image:url(../images/settings/icon_map.png) !important; background-position:center !important;
+}
+
+.htheme_line_icon{
+    background-image:url(../images/settings/icon_line.png) !important; background-position:center !important;
+}
+
+.icon_element_2{
+    background-image:url(../images/settings/icon_2.png) !important; background-position:center !important;
+}
+
+.icon_element_row{
+    background-image:url(../images/settings/icon_row.png) !important; background-position:center !important;
+}
+
+.icon_element_text_block{
+    background-image:url(../images/settings/icon_text_block.png) !important; background-position:center !important;
+}
+
+.icon_element_icon{
+    background-image:url(../images/settings/icon_icons.png) !important; background-position:center !important;
+}
+
+.htheme_people_icon{
+    background-image:url(../images/settings/icon_people.png) !important; background-position:center !important;
+}
+
+/* FRONTEND BAR */
+
+.vc_navbar{
+    background-color:#25292C !important;
+}
+
+.vc_navbar-border-right{
+    border-right:1px solid #373E42 !important;
+}
+
+.vc_navbar .vc_navbar-nav>li{
+    border-left:1px solid #373E42 !important;
+}
+
+.vc_navbar-nav li a:hover {
+    background-color: #373E42  !important;
+    cursor: pointer !important;
+    -webkit-transition: background-color 0.5s ease-out !important;
+    -moz-transition: background-color 0.5s ease-out !important;
+    -o-transition: background-color 0.5s ease-out !important;
+    transition: background-color 0.5s ease-out !important;
+}
+
+.vc_btn-primary, a.vc_btn-primary, button.vc_btn-primary{
+    background-color:#25292C !important;
+}
+
+.vc_btn-primary:hover, a.vc_btn-primary:hover, button.vc_btn-primary:hover{
+    background-color: #000  !important;
+    cursor: pointer !important;
+    -webkit-transition: background-color 0.5s ease-out !important;
+    -moz-transition: background-color 0.5s ease-out !important;
+    -o-transition: background-color 0.5s ease-out !important;
+    transition: background-color 0.5s ease-out !important;
+}
+
+.vc_navbar .vc_navbar-brand{
+    background-image:url(../images/settings/composer_logo.png) !important;
+}
+
+.vc_navbar .vc_dropdown .vc_dropdown-list{
+    background: #111 !important; border: 1px solid #25292C !important;
+}
+
+.vc_dropdown-toggle{
+    color:#FFF !important;
+}
+
+.vc_navbar .vc_dropdown .vc_dropdown-list a.active{
+    background-color:#D72835 !important;
+}
+
+.vc_navbar .vc_dropdown:hover .vc_dropdown-toggle{
+    background-color:#25292C !important;
+}
+
+.vc_ui-button.vc_ui-button-action:focus, .vc_ui-button.vc_ui-button-action:hover{
+    background-color:#25292C !important;
+}
+
+.vc_ui-button.vc_ui-button-action{
+    background-color:#25292C !important;;
+}
+
+.vc_ui-button.vc_ui-button-success:focus, .vc_ui-button.vc_ui-button-success:hover{
+    background-color:#A7CF7F !important;
+}
+
+.vc_ui-button.vc_ui-button-success{
+    background-color:#618C35 !important;
+}
+
+.vc_message.success, .vc_message.type-success{
+    background-color:#A7CF7F !important; color:#FFFFFF !important;
+}
+
+/* CONTACT FORM CHECKBOXES */
+
+.wpb_edit_form_elements  .vc_wrapper-param-type-checkbox{
+    /*width:20% !important; float:left;*/
+}
+
+.wpb_main_sortable .wpb_vc_param_value{
+    display:none;
+}
+
+.wpb_content_element>.wpb_element_wrapper{
+    background-color:#515C64 !important; color:#FFF;
+}
+
+    /* PAGE BUILDER */
+    .wpb_element_title{
+        line-height:33px;
+    }
+
+        .wpb_element_title .vc_element-icon{
+            padding-right:15px;
+        }
