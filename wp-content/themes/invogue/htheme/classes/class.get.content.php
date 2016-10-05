@@ -446,7 +446,8 @@ class htheme_getcontent{
 
 		#GET FILE CONTENTS
 		$json = wp_remote_fopen($json_link);
-		$obj = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
+		//$obj = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
+		$obj = json_decode($json, true);
 
 		$html = '';
 

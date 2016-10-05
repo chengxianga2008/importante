@@ -757,3 +757,4 @@
 
 	#ENABLE EXCERPT
 	add_action('icl_post_languages', 'htheme_show_lang_available', 10, 3);
+	
