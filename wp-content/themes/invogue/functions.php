@@ -758,3 +758,18 @@
 	#ENABLE EXCERPT
 	add_action('icl_post_languages', 'htheme_show_lang_available', 10, 3);
 	
+	
+	function htheme_nav_menu_objects(array $sorted_menu_items){
+		
+		return array_filter($sorted_menu_items, function ($e) {
+			
+			if(is_user_logged_in()){
+				return true;
+			}else{
+				return $e->title != 'Shop' && $e->menu_item_parent != '1485';
+			}
+			
+    	});
+	}
+	
+	add_filter( 'wp_nav_menu_objects', 'htheme_nav_menu_objects', 10, 1);
