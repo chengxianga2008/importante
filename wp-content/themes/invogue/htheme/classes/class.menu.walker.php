@@ -83,13 +83,14 @@ class htheme_walker extends Walker{
 				$attributes .= ' ' . $attr . '="' . $value . '"';
 			}
 		}
-
+		
 		#THIS FILTER IS DOCUMENTED IN (wp-includes/post-template.php)
 		$title = apply_filters( 'the_title', $item->title, $item->ID );
+		
 
 		#FILTERS THE MENU ITEMS TITLE
 		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
-
+		
 		$item_output = $args->before;
 		$item_output .= '<a'. $attributes .'><span>';
 		$item_output .= $args->link_before . $title . $args->link_after;
@@ -118,6 +119,19 @@ class htheme_walker extends Walker{
 
 		$id_field = $this->db_fields['id'];
 		$id       = $element->$id_field;
+		
+		// changed by jack
+		if($id == "1667"){
+			$element->title = "<strong>MY ACCOUNT</strong>";
+		}
+		
+		
+		if(!is_user_logged_in()){
+			if($id == "1667" || $id == "1485"){
+				$this->clear_children($children_elements, $id);
+				return;
+			}
+		}
 
 		//display this element
 		$this->has_children = ! empty( $children_elements[ $id ] );
