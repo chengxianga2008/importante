@@ -809,3 +809,9 @@
 		}
 
 	}
+	
+	function custom_excerpt_ellipsis( $output ) {
+			$output .= "...";
+		return $output;
+	}
+	add_filter( 'get_the_excerpt', 'custom_excerpt_ellipsis' );

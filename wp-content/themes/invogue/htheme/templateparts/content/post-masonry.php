@@ -64,6 +64,9 @@ $height = 'height:'.$img_array[$img_height].'px !important;';
 			<div class="htheme_post_excerpt htheme_default_content">
 				<?php the_excerpt(); ?>
 			</div>
+			<div>
+				<a class="btn read-more-btn" href="<?php echo esc_url(get_permalink()); ?>" role="button">Read More</a>
+			</div>
 			<!-- SOCIAL -->
 				<?php
 					#GET TEMPLATE PART - SOCIAL

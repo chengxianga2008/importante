@@ -237,6 +237,9 @@ function htheme_styles() {
 	#ENQUEUE STYLES
 	wp_enqueue_style( 'htheme-styles', get_template_directory_uri().'/htheme/assets/css/herotheme_theme_styles.css' );
 
+	#ENQUEUE CUSTOM STYLES
+	wp_enqueue_style( 'htheme-custom-styles', get_template_directory_uri().'/htheme/assets/css/custom.css' );
+	
 	#INSTANTIATE CREATE CSS CLASS
 	$htheme_create_css = new htheme_css();
 
