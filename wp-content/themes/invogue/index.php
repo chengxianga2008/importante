@@ -55,6 +55,7 @@ if($htheme_single_layout == 'standard_sidebar'){
 		</div>
 	</div>
 	<!-- ROW -->
+
 	<!-- CHECK SIDEBAR -->
 	<?php if($htheme_sidebar_status){ ?>
 	<!-- ROW -->

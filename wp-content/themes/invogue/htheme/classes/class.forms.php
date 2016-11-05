@@ -97,6 +97,11 @@ class htheme_forms{
 			$user_last = $form_data['user_last'];
 			$user_email = $form_data['user_email'];
 			$user_message = $form_data['user_message'];
+			$user_message_type = $form_data['user_message_type'];
+
+			if($subject == ''):
+				$subject = $user_message_type;
+			endif;
 
 			#HEADERS
 			$headers = array(

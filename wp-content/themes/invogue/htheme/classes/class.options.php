@@ -35,7 +35,12 @@ class htheme_options{
 					'page_404_sub' => 'It looks like the page you are looking for is not here.',
 					'page_404_description' => 'Please feel free to browse the rest of our site.',
 					'page_404_button_text' => 'Back to home',
-					'page_404_button_url' => '#',
+					'page_404_button_url' => '#'
+				),
+				'wpml' => array( #WPML
+					'_label' => 'WPML',
+					'_slug' => 'wpml',
+					'wpmlSelector' => 'false'
 				),
 				'styling' => array( #STYLING
 					'_label' => 'Styling',
@@ -581,6 +586,7 @@ class htheme_options{
 					'optionSearch' => 'true',
 					'optionLanguage' => 'false',
 					'colorScheme' => 'light',
+					'eyebrowText' => '',
 					'stylingOptions' => array(
 						array(
 							'title' => 'Primary Navigation',
@@ -844,6 +850,7 @@ class htheme_options{
 					'copyright' => 'true',
 					'copyrightText' => 'Some copyright information',
 					'social' => 'true',
+					'srcFooterLogo' => '',
 				),
 				'blog' => array(
 					'_label' => 'Blog',
@@ -867,6 +874,7 @@ class htheme_options{
 					'_slug' => 'newsletter',
 					'status' => 'false',
 					'page' => '',
+					'delay' => '0',
 					'title' => 'Weekly Newsletter Signup',
 					'info' => 'Let us know if you would like to be included in our weekly newsletter.',
 					'backgroundImage' => 'image.png',
@@ -913,6 +921,7 @@ class htheme_options{
 				'sharing' => array( #SHARING
 					'_label' => 'Sharing',
 					'_slug' => 'sharing',
+					'facebookId' => '',
 					'shares' => array(
 						array(
 							'status' => 'false',
@@ -1020,17 +1029,110 @@ class htheme_options{
 					'_label' => 'Import/Export',
 					'_slug' => 'import',
 				),
+				'visual' => array( #VISUAL COMPOSER
+					'_label' => 'Visual Composer',
+					'_slug' => 'visual',
+					'visualElements' => 'false',
+				),
+				'megamenu' => array( #MEGA MENU
+					'_label' => 'Mega Menu',
+					'_slug' => 'megamenu',
+					'enable' => 'false',
+					'fonts' => array(
+						array(
+							'label' => 'Mega Heading',
+							'slug' => 'mega_heading',
+							'family' => 'Roboto',
+							'weight' => '300',
+							'size' => '16px',
+							'lineHeight' => '16px',
+							'style' => 'normal',
+							'transform' => 'inherit',
+							'spacing' => 'normal',
+							'subset' => '',
+							'color' => 'accenttwo',
+						),
+						array(
+							'label' => 'Mega Title',
+							'slug' => 'mega_title',
+							'family' => 'Roboto',
+							'weight' => '300',
+							'size' => '14px',
+							'lineHeight' => '14px',
+							'style' => 'normal',
+							'transform' => 'inherit',
+							'spacing' => 'normal',
+							'subset' => '',
+							'color' => 'accentone',
+						),
+						array(
+							'label' => 'Mega Sub Content',
+							'slug' => 'mega_sub_content',
+							'family' => 'Roboto',
+							'weight' => '500',
+							'size' => '12px',
+							'lineHeight' => '12px',
+							'style' => 'normal',
+							'transform' => 'inherit',
+							'spacing' => 'normal',
+							'subset' => '',
+							'color' => 'accentfour',
+						),
+					),
+					'colData' => array(
+						'posts' => array(
+							'Latest', 'Most Viewed'
+						),
+						'pages' => array(
+							'Latest', 'Most Viewed'
+						),
+						'categories' => '',
+						'plainHtml' => '',
+						'products' => array(
+							'Latest', 'Top Sales', 'Top Rated'
+						),
+					),
+					'menuItems' => array(
+						array(
+							'id' => '',
+							'enable' => 'off',
+							'enableMobile' => 'yes',
+							'columnLayout' => '3',
+							'backgroundImage' => '',
+							'backgroundPosition' => 'center',
+							'backgroundSize' => 'contain',
+							'backgroundColor' => '#FFFFFF',
+							'fontPrimary' => '',
+							'fontSecondary' => '',
+							'underlineTitle' => 'yes',
+							'underlineColor' => '#EFEFEF',
+							'border' => 'no',
+							'borderColor' => '#EFEFEF',
+							'shadow' => 'no',
+							'shadowColor' => '#CCCCCC',
+							'menuData' => array(
+								array(
+									'title' => '',
+									'type' => 'posts',
+									'showType' => 'latest',
+									'order' => '1',
+									'showHtml' => '',
+									'showPages' => '',
+									'showCategories' => '',
+									'showPostTypes' => '',
+								),
+							),
+						),
+					),
+				),
 			),
 		);
 
 		if($load == 'initial'){
 
-			#CONVERT ARRAY TO SERIALIZE STRING
-			$serialize = serialize($default);
-
 			#CREATE OPTION
-			add_option( 'hero_theme_options', $serialize, '', 'yes' );
-			add_option( 'hero_reset_options', $serialize, '', 'yes' );
+			add_option( 'hero_theme_options', $default, '', 'yes' );
+			add_option( 'hero_reset_options', $default, '', 'yes' );
 
 		} else {
 

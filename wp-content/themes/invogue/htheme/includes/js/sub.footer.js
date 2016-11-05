@@ -32,6 +32,9 @@ jQuery(function(){
     //UPDATE DATA
     htheme_update_data();
 
+    //SET REMOVE
+    htheme_set_remove();
+
 });
 
 function htheme_set_data(){
@@ -45,6 +48,7 @@ function htheme_set_data(){
     var _social = global_options.settings.footer.social;
     var _backgroundPrimary = global_options.settings.footer.backgroundPrimary;
     var _backgroundSecondary = global_options.settings.footer.backgroundSecondary;
+    var _srcFooterLogo = global_options.settings.footer.srcFooterLogo;
 
     //SET DATA
     if(_layout){
@@ -64,6 +68,14 @@ function htheme_set_data(){
             } else {
                 jQuery(this).removeClass('htheme_active_state');
             }
+        });
+    }
+
+    if(_srcFooterLogo){
+        jQuery('#srcFooterLogo').val(_srcFooterLogo);
+        //SET IMAGE
+        jQuery('#image_srcFooterLogo').css({
+            'background-image' : 'url('+_srcFooterLogo+')'
         });
     }
 
@@ -113,6 +125,7 @@ function htheme_update_data(){
     var _social = jQuery('#social');
     var _backgroundPrimary = jQuery('#backgroundPrimary');
     var _backgroundSecondary = jQuery('#backgroundSecondary');
+    var _srcFooterLogo = jQuery('#srcFooterLogo');
 
 
     //UPDATE
@@ -156,6 +169,15 @@ function htheme_update_data(){
 
         htheme_flag_save(true);
 
+    });
+
+    jQuery(_srcFooterLogo).on('change', function(){
+        global_options.settings.footer.srcFooterLogo = jQuery(this).val();
+        //SET IMAGE
+        jQuery('#image_srcFooterLogo').css({
+            'background-image' : 'url('+jQuery(this).val()+')'
+        });
+        htheme_flag_save(true);
     });
 
     jQuery(_colorScheme).on('change', function(){

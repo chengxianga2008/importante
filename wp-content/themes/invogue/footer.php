@@ -17,6 +17,7 @@ $htheme_copytext = $GLOBALS['htheme_global_object']['settings']['footer']['copyr
 <div class="htheme_footer_holder">
 
 	<?php if($htheme_footer_layout == 'footer_full' || $htheme_footer_layout == 'footer_top'){ ?>
+
 	<div class="htheme_main_footer">
 		<div class="htheme_container">
 
@@ -88,11 +89,12 @@ $htheme_copytext = $GLOBALS['htheme_global_object']['settings']['footer']['copyr
 			<?php } ?>
 		</div>
 	</div>
+
 	<?php } ?>
+
 	<?php
 
-	if($htheme_footer_layout == 'footer_full' || $htheme_footer_layout == 'footer_sub'){
-
+		#SOCIAL ITEMS
 		$htheme_social_items =  $GLOBALS['htheme_global_object']['settings']['header']['socialItems'];
 		$htheme_social_status = $GLOBALS['htheme_global_object']['settings']['footer']['social'];
 
@@ -110,6 +112,8 @@ $htheme_copytext = $GLOBALS['htheme_global_object']['settings']['footer']['copyr
 
 	?>
 
+	<?php if($htheme_footer_layout == 'footer_full' || $htheme_footer_layout == 'footer_sub'){ ?>
+
 	<div class="htheme_sub_footer">
 		<div class="htheme_container htheme_position_relative">
 			<div class="htheme_inner_col">
@@ -117,13 +121,13 @@ $htheme_copytext = $GLOBALS['htheme_global_object']['settings']['footer']['copyr
 				<div class="htheme_footer_nav_wrap <?php echo esc_attr($float_style); ?>">
 					<?php if($htheme_copyright == 'true'){ ?>
 					<div class="htheme_copyright">
-						<?php echo esc_html($htheme_copytext); ?>
+						<?php _e($htheme_copytext, 'invogue'); ?>
 					</div>
 					<?php } ?>
 					<div class="htheme_footer_nav">
 						<?php
 							if ( has_nav_menu( 'footer' ) ){
-								wp_nav_menu(array('theme_location' => 'footer', 'container' => '', 'menu_class' => '', 'menu_id' => 'footer'));
+								wp_nav_menu(array('theme_location' => 'footer', 'container' => '', 'menu_class' => '', 'menu_id' => 'footer', 'depth' => 1));
 							}
 						?>
 					</div>
@@ -146,7 +150,58 @@ $htheme_copytext = $GLOBALS['htheme_global_object']['settings']['footer']['copyr
 			</div>
 		</div>
 	</div>
+
 	<?php } ?>
+
+	<?php
+	#BLOG VARAIBLES
+	$htheme_src_footer_logo = $GLOBALS['htheme_global_object']['settings']['footer']['srcFooterLogo'];
+	?>
+
+	<?php if($htheme_footer_layout == 'footer_layout_one'){ ?>
+	<div class="htheme_main_footer htheme_footer_layout_one">
+		<div class="htheme_container">
+			<div class="htheme_inner_col">
+				<?php $htmeme_no_margin = 'htheme_no_margin' ?>
+				<?php if($htheme_src_footer_logo != ''): $htmeme_no_margin = ''; ?>
+				<div class="htheme_footer_logo">
+					<a href="<?php echo esc_url(home_url()); ?>"><img alt="<?php esc_html_e('Back to home', 'invogue'); ?>" src="<?php echo esc_url($htheme_src_footer_logo); ?>"></a>
+				</div>
+				<?php endif; ?>
+				<?php if($social_count > 0 && $htheme_social_status == 'true'){ ?>
+					<div class="htheme_footer_layout_one_social <?php echo esc_attr($htmeme_no_margin); ?>">
+						<div class="htheme_footer_layout_one_social_wrap">
+							<?php
+							foreach($htheme_social_items as $social){
+								if($social['status'] == 'true'){
+									?>
+									<a href="<?php echo esc_url($social['url']); ?>" target="<?php echo esc_attr($social['target']); ?>" class="htheme_icon_social_<?php echo esc_attr($social['label']); ?>"><span><?php echo esc_html($social['label']); ?></span></a>
+									<?php
+								}
+							}
+							?>
+						</div>
+					</div>
+				<?php } ?>
+				<div class="htheme_footer_nav_wrap <?php echo esc_attr($float_style); ?>">
+					<?php if($htheme_copyright == 'true'){ ?>
+						<div class="htheme_copyright">
+							<?php echo esc_html($htheme_copytext); ?>
+						</div>
+					<?php } ?>
+					<div class="htheme_footer_nav">
+						<?php
+						if ( has_nav_menu( 'footer' ) ){
+							wp_nav_menu(array('theme_location' => 'footer', 'container' => '', 'menu_class' => '', 'menu_id' => 'footer', 'depth' => 1));
+						}
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php } ?>
+
 </div>
 <!-- FOOTER HOLDER -->
 <?php wp_footer(); ?>

@@ -18,11 +18,8 @@ class htheme_frontend{
 		#GET OPTION DATA
 		$options = get_option( 'hero_theme_options' );
 
-		#CONVERT STRING BACK TO ARRAY
-		$data = unserialize($options);
-
 		#RETURN WOO CONTENT
-		return $data;
+		return $options;
 
 	}
 

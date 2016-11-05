@@ -217,6 +217,28 @@
 <!-- ROW -->
 <div class="htheme_form_row">
 	<div class="htheme_form_col_12">
+		<div class="htheme_label htheme_red_heading"><?php esc_html_e('Eyebrow menu', 'invogue'); ?></div>
+		<div class="htheme_label_excerpt"><?php esc_html_e('Additional eyebrow settings.', 'invogue'); ?></div>
+	</div>
+</div>
+<!-- ROW -->
+<!-- ROW -->
+<div class="htheme_form_row">
+	<div class="htheme_form_col_3">
+		<div class="htheme_label"><?php esc_html_e('Eyebrow text', 'invogue'); ?></div>
+		<div class="htheme_label_excerpt"><?php esc_html_e('Add some additional text/content to the eyebrow menu.', 'invogue'); ?></div>
+	</div>
+	<div class="htheme_form_col_9">
+		<input type="text" name="eyebrowText" id="eyebrowText" class="htheme_field_fixed_400">
+	</div>
+</div>
+<!-- ROW -->
+<!-- ROW SPLIT -->
+<div class="htheme_row_split"></div>
+<!-- ROW SPLIT -->
+<!-- ROW -->
+<div class="htheme_form_row">
+	<div class="htheme_form_col_12">
 		<div class="htheme_label htheme_red_heading"><?php esc_html_e('Layout Options', 'invogue'); ?></div>
 		<div class="htheme_label_excerpt"><?php esc_html_e('Enable some extra navigational items.', 'invogue'); ?></div>
 	</div>

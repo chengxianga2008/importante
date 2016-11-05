@@ -22,7 +22,7 @@
 			<div class="htheme_row_content_wrap">
 				<h4><?php echo esc_html($post->post_title); ?></h4>
 				<?php if($post->post_excerpt){ ?>
-					<p class="htheme_h4_sub"><?php echo rtrim(substr(esc_html($post->post_excerpt), 0, 90)); ?></p>
+					<p class="htheme_h4_sub"><?php echo strip_tags($post->post_excerpt); ?></p>
 				<?php } ?>
 			</div>
 		</div>

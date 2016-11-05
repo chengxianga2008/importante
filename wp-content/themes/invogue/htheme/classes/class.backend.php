@@ -96,14 +96,11 @@ class htheme_backend{
 		#POST VARIABLES
 		$options = stripslashes_deep($_POST['options']);
 
-		#SERIALIZE
-		$serialize = serialize($options);
-
 		#UPDATE OPTION
-		update_option( 'hero_theme_options', $serialize );
+		update_option( 'hero_theme_options', $options );
 
 		//RESPOND WITH JSON
-		echo json_encode(unserialize($serialize));
+		echo json_encode($options);
 		exit();
 
 	}
@@ -114,11 +111,8 @@ class htheme_backend{
 		#GET OPTION DATA
 		$options = get_option( 'hero_theme_options' );
 
-		#CONVERT STRING BACK TO ARRAY
-		$data = unserialize($options);
-
-		//RESPOND WITH JSON
-		echo json_encode($data);
+		#RESPOND WITH JSON
+		echo json_encode($options);
 		exit();
 
 	}
@@ -790,8 +784,8 @@ class htheme_backend{
 			'contact' => "Contact",
 		);
 		$footer_menu_array = array(
-			'about' => "About Us",
-			'contact' => "Contact",
+			'about' => "About us",
+			'contact' => "Contact us",
 		);
 
 		#CREATE MENUS - MAIN

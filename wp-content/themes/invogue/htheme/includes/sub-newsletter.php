@@ -13,6 +13,28 @@
 <!-- ROW -->
 <div class="htheme_form_row">
 	<div class="htheme_form_col_3">
+		<div class="htheme_label"><?php esc_html_e('Popup delay', 'invogue'); ?></div>
+	</div>
+	<div class="htheme_form_col_9">
+		<select name="delay" id="delay" class="htheme_field_fixed_400">
+			<option value="0"><?php esc_html_e('0 seconds', 'invogue'); ?></option>
+			<option value="1"><?php esc_html_e('1 second', 'invogue'); ?></option>
+			<option value="2"><?php esc_html_e('2 seconds', 'invogue'); ?></option>
+			<option value="3"><?php esc_html_e('3 seconds', 'invogue'); ?></option>
+			<option value="4"><?php esc_html_e('4 seconds', 'invogue'); ?></option>
+			<option value="5"><?php esc_html_e('5 seconds', 'invogue'); ?></option>
+			<option value="6"><?php esc_html_e('6 seconds', 'invogue'); ?></option>
+			<option value="7"><?php esc_html_e('7 seconds', 'invogue'); ?></option>
+			<option value="8"><?php esc_html_e('8 seconds', 'invogue'); ?></option>
+			<option value="9"><?php esc_html_e('9 seconds', 'invogue'); ?></option>
+			<option value="10"><?php esc_html_e('10 seconds', 'invogue'); ?></option>
+		</select>
+	</div>
+</div>
+<!-- ROW -->
+<!-- ROW -->
+<div class="htheme_form_row">
+	<div class="htheme_form_col_3">
 		<div class="htheme_label"><?php esc_html_e('Set for page', 'invogue'); ?></div>
 	</div>
 	<div class="htheme_form_col_9">

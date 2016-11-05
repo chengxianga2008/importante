@@ -57,27 +57,71 @@ add_action( 'after_setup_theme', 'htheme_setup' );
 #SCRIPT ENQUEUE
 function htheme_scripts(){
 
+	#GLOBALS
+	global $post;
+	setup_postdata( $post );
+
 	#INSTANTIATE CREATE JS CLASS
 	$htheme_create_js = new htheme_js();
 
 	#JQUERY MOBILE
 	wp_enqueue_script( 'htheme-mobile', get_template_directory_uri().'/htheme/assets/js/jquery.mobile.js', array( 'jquery' ) );
 
-	#SHARETHIS JS FILE
-	wp_enqueue_script( 'htheme-sharethis', 'https://ws.sharethis.com/button/buttons.js', array( 'jquery' ) );
-
 	#COMMENT REPLY SCRIPT
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	#ENQUEUE CUSTOM SHARETHIS SCRIPT
-	$custom_sharethis_js = $htheme_create_js->htheme_create_sharethis();
-	wp_add_inline_script( 'htheme-sharethis', $custom_sharethis_js );
-
 	#ENQUEUE CUSTOM SCRIPT BEFORE HEAD
 	$custom_before_js = $htheme_create_js->htheme_create_before_js();
-	wp_add_inline_script( 'htheme-sharethis', $custom_before_js );
+	wp_add_inline_script( 'htheme-mobile', $custom_before_js );
+
+	///////////////////////////////
+	// SHARETHIS FALLBACK
+	///////////////////////////////
+
+	$post_type = $post->post_type;
+	$htheme_social_array = [];
+
+	if(class_exists( 'WooCommerce' ) && is_product() ){
+		$htheme_show_social = $GLOBALS['htheme_global_object']['settings']['woocommerce']['socialIcons'];
+	} else {
+		$htheme_show_social = $GLOBALS['htheme_global_object']['settings']['blog']['socialIcons'];
+	}
+
+	#GET OBJECT
+	foreach($GLOBALS['htheme_global_object']['settings']['sharing']['shares'] as $social){
+		if($social['postType'] == $post_type){
+			$htheme_social_array[] = $social['socialItems'];
+		}
+	}
+
+	if($htheme_social_array){
+
+		foreach($htheme_social_array[0] as $social){
+
+			if($social['status'] == 'true' && $social['label'] == 'facebook' && $htheme_show_social !== 'false'):
+
+				#FACEBOOK APP ID
+				$htheme_facebook_id = $GLOBALS['htheme_global_object']['settings']['sharing']['facebookId'];
+
+				if($htheme_facebook_id == ''){
+					#SHARETHIS JS FILE
+					wp_enqueue_script('htheme-sharethis', 'https://ws.sharethis.com/button/buttons.js', array('jquery'));
+					#ENQUEUE CUSTOM SHARETHIS SCRIPT
+					$custom_sharethis_js = $htheme_create_js->htheme_create_sharethis();
+					wp_add_inline_script('htheme-sharethis', $custom_sharethis_js);
+				}
+
+			endif;
+
+		}
+
+	}
+
+	///////////////////////////////
+	// SHARETHIS FALLBACK
+	///////////////////////////////
 
 }
 
@@ -90,7 +134,8 @@ function htheme_footer_script() {
 	#INSTANTIATE CREATE JS CLASS
 	$htheme_create_js = new htheme_js();
 
-	wp_enqueue_script('jquery-ui-core');
+	wp_enqueue_script('jquery-ui-core', array( 'jquery' ));
+	wp_enqueue_script('jquery-ui-position', array( 'jquery' ));
 
 	#LOAD TWEENMAX (UTILS/EASING/MAIN MAX)
 	wp_enqueue_script( 'htheme-cssplugin', get_template_directory_uri().'/htheme/assets/js/greensock/plugins/CSSPlugin.js', array( 'jquery' ) );
@@ -118,6 +163,25 @@ function htheme_footer_script() {
 		wp_add_inline_script( 'htheme-script', $custom_pageload_js );
 	}
 
+	#LOAD PINTEREST
+	wp_enqueue_script( 'htheme-pin', '//assets.pinterest.com/js/pinit.js', array( 'jquery' ) );
+
+	#LOAD TUMBLR
+	wp_enqueue_script( 'htheme-tumblr', 'https://assets.tumblr.com/share-button.js', array( 'jquery' ) );
+
+	#GOOGLEPLUS
+	wp_enqueue_script( 'htheme-googleplus', 'https://apis.google.com/js/platform.js', array( 'jquery' ) );
+
+	#TWITTER
+	wp_enqueue_script( 'htheme-twitter', 'https://platform.twitter.com/widgets.js', array( 'jquery' ) );
+
+	#FACEBOOK APP ID
+	$htheme_facebook_id = $GLOBALS['htheme_global_object']['settings']['sharing']['facebookId'];
+	if($htheme_facebook_id != ''){
+		$custom_facebook_js = $htheme_create_js->htheme_get_facebook_js();
+		wp_add_inline_script( 'htheme-script', $custom_facebook_js );
+	}
+
 	#VARIABLES
 	$htheme_custom_body = $GLOBALS['htheme_global_object']['settings']['general']['codeBody'];
 
@@ -136,8 +200,10 @@ add_action( 'wp_footer', 'htheme_footer_script' );
 #HTHEME ADMIN SCRIPTS
 function htheme_add_admin_scripts(){
 
+	$screen = get_current_screen();
+
 	#ADD ADMIN STYLES
-	if(is_admin() && isset($_GET['page']) && $_GET['page'] == 'htheme_settings' || isset($_GET['post'])){ //admin panel
+	if(is_admin() && isset($_GET['page']) && $_GET['page'] == 'htheme_settings' || isset($_GET['post']) || $screen->id == 'widgets' || isset($_GET['post_type']) && $_GET['post_type'] == 'page'){ //admin panel
 		//admin vc styles
 		wp_enqueue_style( 'htheme-vcstyles', get_template_directory_uri().'/htheme/assets/css/herotheme_vc_styles.css' );
 		//admin setting styles

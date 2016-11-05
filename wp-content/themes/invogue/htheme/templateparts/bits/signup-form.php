@@ -9,6 +9,7 @@
 
 	$htheme_newsletter_title = $GLOBALS['htheme_global_object']['settings']['newsletter']['title'];
 	$htheme_newsletter_info = $GLOBALS['htheme_global_object']['settings']['newsletter']['info'];
+	$htheme_newsletter_delay = $GLOBALS['htheme_global_object']['settings']['newsletter']['delay'];
 	$htheme_newsletter_bg = $GLOBALS['htheme_global_object']['settings']['newsletter']['backgroundImage'];
 	$htheme_newsletter_size = $GLOBALS['htheme_global_object']['settings']['newsletter']['backgroundSize'];
 	$htheme_newsletter_position = $GLOBALS['htheme_global_object']['settings']['newsletter']['backgroundPosition'];
@@ -18,7 +19,12 @@
 
 <div class="htheme_signup_preview">
 	<div class="htheme_icon_popup_close"></div>
-	<div class="htheme_signup_holder" style="background-image:url(<?php echo esc_url($htheme_newsletter_bg); ?>); background-color:<?php echo esc_attr($htheme_newsletter_bg_color); ?>; background-size:<?php echo esc_attr($htheme_newsletter_size);?>; background-position:<?php echo esc_attr($htheme_newsletter_position); ?>">
+	<div class="htheme_signup_holder" data-delay="<?php echo esc_attr($htheme_newsletter_delay); ?>" style="background-image:url(<?php echo esc_url($htheme_newsletter_bg); ?>); background-color:<?php echo esc_attr($htheme_newsletter_bg_color); ?>; background-size:<?php echo esc_attr($htheme_newsletter_size);?>; background-position:<?php echo esc_attr($htheme_newsletter_position); ?>">
+		<div class="htheme_signup_loader_overlay">
+			<div class="htheme_spinner">
+				<div class="htheme_double_bounce1"></div><div class="htheme_double_bounce2"></div>
+			</div>
+		</div>
 		<!-- ROW -->
 		<form id="htheme_form_signup_popup" class="htheme_signup_form" data-subject="SUBJECT">
 			<div class="htheme_row">

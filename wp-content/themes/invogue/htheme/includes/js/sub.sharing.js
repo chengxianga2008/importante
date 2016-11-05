@@ -4,6 +4,12 @@ jQuery(function(){
     //SET THE HEADER
     htheme_set_header('Sharing');
 
+    //SET DATA
+    htheme_set_data();
+
+    //UPDATE DATA
+    htheme_update_data();
+
     //GET HTML
     jQuery(global_options.settings.sharing.shares).each(function(index, element){
         jQuery('.htheme_load_sharing').append(htheme_get_sharing_html(index, element));
@@ -12,8 +18,8 @@ jQuery(function(){
     //SET UPDATE
     jQuery(global_options.settings.sharing.shares).each(function(index, element){
         jQuery(element.socialItems).each(function(idx, ele){
-            htheme_set_data(index, idx, ele.label);
-            htheme_update_data(index, idx, ele.label);
+            htheme_set_data_sharing(index, idx, ele.label);
+            htheme_update_data_sharing(index, idx, ele.label);
         });
     });
 
@@ -22,7 +28,30 @@ jQuery(function(){
 
 });
 
-function htheme_set_data(primary_index, social_index, label){
+//SET DATA
+function htheme_set_data(){
+
+    var _facebook_id = global_options.settings.sharing.facebookId;
+
+    if(_facebook_id){
+        jQuery('#facebookId').val(_facebook_id);
+    }
+
+}
+
+//UPDATE DATA
+function htheme_update_data(){
+
+    var _facebook_id = jQuery('#facebookId');
+
+    jQuery(_facebook_id).on('change', function(){
+        global_options.settings.sharing.facebookId = jQuery(this).val();
+        htheme_flag_save(true);
+    });
+
+}
+
+function htheme_set_data_sharing(primary_index, social_index, label){
 
     //SET DATA
     if(global_options.settings.sharing.shares[primary_index].socialItems[social_index].status){
@@ -34,7 +63,7 @@ function htheme_set_data(primary_index, social_index, label){
 }
 
 //UPDATE DATA
-function htheme_update_data(primary_index, social_index, label){
+function htheme_update_data_sharing(primary_index, social_index, label){
 
     //UPDATE
     jQuery('#social'+label+'_'+primary_index).off().on('change', function(){

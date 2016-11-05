@@ -95,7 +95,7 @@ class htheme_getwoo{
 						$html .= '</div>';
 						if( $obj['content']):
 							$html .= '<span class="htheme_single_product_excerpt htheme_default_content">';
-								$html .= esc_html($obj['content']);
+								$html .= $obj['product_description'];
 							$html .= '</span>';
 						endif;
 						#GET TEMPLATE PART - RATING
@@ -445,15 +445,16 @@ class htheme_getwoo{
 
 		#FORMAT CONTENT
 		if($product_obj->post_excerpt != ''){
-			$content = rtrim(substr(esc_html($product_obj->post_excerpt), 0, 100)).'...';
+			$content = rtrim(substr(__($product_obj->post_excerpt, 'invogue'), 0, 300)).'...';
 		} else {
-			$content = rtrim(substr(esc_html($product_obj->post_excerpt), 0, 100));
+			$content = rtrim(substr(__($product_obj->post_content, 'invogue'), 0, 300));
 		}
 
 		return array(
 			'id' => $product_obj->ID,
 			'title' => $product_obj->post_title,
 			'content' => $content,
+			'product_description' => $product_obj->post_excerpt,
 			'url' => esc_url(get_permalink($product_obj->ID)),
 			'image' => esc_url($image[0]),
 			'price' => $price,
@@ -1207,7 +1208,7 @@ class htheme_getwoo{
 											$html .= $this->htheme_return_price_html($product->ID);
 										$html .= '</h3>';
 										$html .= '<div class="htheme_promo_desc">';
-											$html .= esc_html($product->post_excerpt);
+											$html .= esc_html(strip_tags($product->post_excerpt));
 										$html .= '</div>';
 										$html .= '<div class="htheme_promo_title">';
 											$html .= '<a href="'.esc_url(get_permalink($product->ID)).'" class="htheme_btn_style_1">'.esc_html__('VIEW PRODUCT', 'invogue').'</a>';
@@ -1307,7 +1308,7 @@ class htheme_getwoo{
 								$content_html .= esc_html($product->post_title);
 							$content_html .= '</h2>';
 							$content_html .= '<span class="htheme_default_content">';
-								$content_html .= esc_html($product->post_excerpt);
+								$content_html .= esc_html(strip_tags($product->post_excerpt));
 							$content_html .= '</span>';
 							$content_html .= '<h3 class="htheme_most_wanted_price">';
 								$content_html .= $this->htheme_return_price_html($product->ID);

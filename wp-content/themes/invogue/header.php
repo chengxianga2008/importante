@@ -11,6 +11,8 @@
 	<!-- META -->
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- OG META - FACEBOOK -->
+	<?php get_template_part( 'htheme/templateparts/header/header', 'facebook' ); ?>
 	<!-- GET TEMPLATE PART - FAV ICON -->
 	<?php get_template_part( 'htheme/templateparts/bits/fav', 'icon' ); ?>
 	<!-- LINK -->
@@ -33,7 +35,6 @@
 
 ?>
 <body <?php body_class(); ?>>
-
 <?php
 	#GET TEMPLATE PART - NAVIGATION
 	get_template_part( 'htheme/templateparts/bits/popup', 'overlay' );
@@ -83,7 +84,6 @@
 	}
 
 ?>
-
 <!-- TOP HOLDER -->
 <div class="htheme_top_holder <?php echo esc_attr($htheme_front_top_style); ?>">
 
@@ -91,7 +91,6 @@
 
 	#GET TEMPLATE PART - NAVIGATION
 	get_template_part( 'htheme/templateparts/header/top', 'navigation' );
-
 	#GET TEMPLATE PART - SLIDER
 	if(is_page_template( 'templates/template.home-noslider.php' )){
 		get_template_part( 'htheme/templateparts/header/top', 'content-image' );

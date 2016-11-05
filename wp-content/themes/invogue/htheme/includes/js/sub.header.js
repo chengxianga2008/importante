@@ -77,6 +77,7 @@ function htheme_set_data(){
     var _colorScheme = global_options.settings.header.colorScheme;
     var _socialIcons = global_options.settings.header.socialIcons;
     var _socialPrimaryColor = global_options.settings.header.socialPrimaryColor;
+    var _eyebrowText = global_options.settings.header.eyebrowText;
 
     //SET DATA
     if(_layout){
@@ -233,6 +234,10 @@ function htheme_set_data(){
         jQuery('#socialPrimaryColor').val(_socialPrimaryColor);
     }
 
+    if(_eyebrowText){
+        jQuery('#eyebrowText').val(_eyebrowText);
+    }
+
 }
 
 //UPDATE DATA
@@ -262,6 +267,7 @@ function htheme_update_data(){
     var _colorScheme = jQuery('#colorScheme');
     var _socialIcons = jQuery('#socialIcons');
     var _socialPrimaryColor = jQuery('#socialPrimaryColor');
+    var _eyebrowText = jQuery('#eyebrowText');
 
     //UPDATE
     jQuery(_layout).on('click', function(){
@@ -416,6 +422,11 @@ function htheme_update_data(){
 
     jQuery(_socialPrimaryColor).on('change', function(){
         global_options.settings.header.socialPrimaryColor = jQuery(this).val();
+        htheme_flag_save(true);
+    });
+
+    jQuery(_eyebrowText).on('change', function(){
+        global_options.settings.header.eyebrowText = jQuery(this).val();
         htheme_flag_save(true);
     });
 

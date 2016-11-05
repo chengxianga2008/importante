@@ -202,11 +202,12 @@ img, a{
     }
 
 .htheme_inner_container{
-    width:100%; display:table;
+    width:100%; display:table; background-color:#FFF;
 }
 
     .htheme_sidebar{
         width:175px; display:table; float:left; background-image:url(../images/settings/bg_tile_1.png); background-position:right; background-repeat:repeat-y; background-color:#32373C;
+        -webkit-border-radius:0px 0px 4px 4px; -moz-border-radius:0px 0px 4px 4px; border-radius:0px 0px 4px 4px;
     }
 
         .htheme_sidebar ul{
@@ -274,7 +275,34 @@ img, a{
                 .sharing:after{ background-image:url(../images/icons/icon_sharing.png); }
                 .demos:after{ background-image:url(../images/icons/icon_demos.png); }
                 .import:after{ background-image:url(../images/icons/icon_import.png); }
+                .megamenu:after{ background-image:url(../images/icons/icon_megamenu.png); }
                 .documentation:after{ background-image:url(../images/icons/icon_documentation.png); }
+                .wpml:after{ background-image:url(../images/icons/icon_wpml.png); }
+                .visual:after{ background-image:url(../images/icons/icon_visual.png); }
+
+                .wpb-content-layouts li[data-element^="htheme_"],
+                .wpb-content-layouts li[data-element^="vc_icon"],
+                .wpb-content-layouts li[data-element^="vc_column_text"],
+                .wpb-content-layouts li[data-element^="vc_row"]{
+                    background: rgba(0,0,0,0.1) !important;
+                }
+
+.htheme_wpml_holder h3{
+    color:#DC4551; font-weight:400;
+    font-size: 22px;
+}
+
+.otgsi_site_key_form{
+    width:100%; box-sizing:border-box; padding-bottom:20px;
+}
+
+.otgs_wp_installer_table_compact{
+    border-color:#efefef;
+}
+
+.otgsi_site_key_form [type="text"]{
+    width:100%; margin-bottom:5px; margin-top:5px;
+}
 
 .htheme_heroplugins_logo{
         width:100%; text-align:center; padding:20px 0;
@@ -366,6 +394,10 @@ img, a{
                     box-sizing: border-box !important;
                 }
 
+                .htheme_control * [type="checkbox"]{
+                    border:1px solid #CCC !important;
+                }
+
                 .htheme_control * input{
                     border:1px solid #efefef !important; background-color:#FFFFFF; padding:10px; font-family:inherit; color:#34393F; display:block;
                     -moz-box-shadow:    inset 0 0 0 #FFF;
@@ -430,8 +462,12 @@ img, a{
                             width:100px !important
                         }
 
-            .htheme_layout_selector, .htheme_footer_layout_selector, .htheme_col_layout_selector, .htheme_slide_layout_selector, .htheme_testimonial_layout_selector{
+            .htheme_layout_selector, .htheme_slide_layout_selector, .htheme_testimonial_layout_selector{
                 width:28%; height:90px; border:2px solid #DDDDDD; float:left; margin:0 3% 0 0; background-position:center; background-repeat:no-repeat; cursor:pointer;
+            }
+
+            .htheme_footer_layout_selector, .htheme_col_layout_selector{
+                width:20%; height:90px; border:2px solid #DDDDDD; float:left; margin:10px 2% 0 0; background-position:center; background-repeat:no-repeat; cursor:pointer;
             }
 
                 .htheme_layout_selector:hover, .htheme_footer_layout_selector:hover, .htheme_col_layout_selector:hover, .htheme_slide_layout_selector:hover, .htheme_testimonial_layout_selector:hover{
@@ -466,6 +502,10 @@ img, a{
 
                 #htheme_footer_layout_3{
                     background-image:url(../images/settings/footer_3.jpg);
+                }
+
+                #htheme_footer_layout_4{
+                    background-image:url(../images/settings/footer_4.jpg);
                 }
 
                 #htheme_col_footer_layout_1{
@@ -748,6 +788,10 @@ img, a{
                 width:100%; display:table; height:35px;
             }
 
+.htheme_wpml{
+    width:200px; height:50px; background-image:url(../images/settings/wpml.png); background-position:center; background-size:contain; background-repeat:no-repeat; display:table;
+}
+
 .htheme_edit_button{
     width:15px; height:15px; background-image:url(../images/settings/edit_btn.png); float:left; background-position:center; background-repeat:no-repeat; margin:16px 15px 0 0;
     cursor:pointer;
@@ -758,7 +802,7 @@ img, a{
     cursor:pointer;
 }
 
-.htheme_load_fonts, .htheme_load_blog, .htheme_load_sharing{
+.htheme_load_fonts, .htheme_load_blog, .htheme_load_sharing, .htheme_load_mega_fonts{
     width:100%; display:table;
 }
 

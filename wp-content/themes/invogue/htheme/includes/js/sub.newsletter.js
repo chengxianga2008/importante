@@ -24,6 +24,7 @@ function htheme_set_data(){
     //VARIABLES
     var _status = global_options.settings.newsletter.status;
     var _page = global_options.settings.newsletter.page;
+    var _delay = global_options.settings.newsletter.delay;
     var _title = global_options.settings.newsletter.title;
     var _info = global_options.settings.newsletter.info;
     var _backgroundImage = global_options.settings.newsletter.backgroundImage;
@@ -41,6 +42,14 @@ function htheme_set_data(){
     if(_page){
         jQuery('#page option').each(function(index, element) {
             if(jQuery(this).val() == _page){
+                jQuery(this).attr('selected', 'selected')
+            }
+        });
+    }
+
+    if(_delay){
+        jQuery('#delay option').each(function(index, element) {
+            if(jQuery(this).val() == _delay){
                 jQuery(this).attr('selected', 'selected')
             }
         });
@@ -90,6 +99,7 @@ function htheme_update_data(){
     //VARIABLES
     var _status = jQuery('#status');
     var _page = jQuery('#page');
+    var _delay = jQuery('#delay');
     var _title = jQuery('#title');
     var _info = jQuery('#info');
     var _backgroundImage = jQuery('#backgroundImage');
@@ -105,6 +115,11 @@ function htheme_update_data(){
 
     jQuery(_page).on('change', function(){
         global_options.settings.newsletter.page = jQuery(this).children('option:selected').val();
+        htheme_flag_save(true);
+    });
+
+    jQuery(_delay).on('change', function(){
+        global_options.settings.newsletter.delay = jQuery(this).children('option:selected').val();
         htheme_flag_save(true);
     });
 

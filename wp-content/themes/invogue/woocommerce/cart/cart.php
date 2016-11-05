@@ -140,7 +140,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<?php if ( wc_coupons_enabled() ) { ?>
 			<div class="coupon">
 
-				<div class="htheme_coupon_wrap">
+				<div class="htheme_coupon_wrap" data-text-open="<?php esc_html_e( 'HAVE A COUPON?', 'woocommerce' ); ?>"  data-text-close="<?php esc_html_e( 'CLOSE COUPON!', 'woocommerce' ); ?>">
 					<div class="htheme_coupon_open htheme_cart_button_light" data-toggle="open"><?php esc_html_e( 'HAVE A COUPON?', 'woocommerce' ); ?></div>
 					<div class="htheme_coupon_inner">
 						<div class="htheme_form_field_item">

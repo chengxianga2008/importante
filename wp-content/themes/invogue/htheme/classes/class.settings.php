@@ -97,15 +97,18 @@ class htheme_settings{
 		#GET OPTION DATA
 		$options = get_option( 'hero_theme_options' );
 
-		#CONVERT STRING BACK TO ARRAY
-		$data = unserialize($options);
-
 		#SETUP HTML FOR SIDEBAR
 		$html = '';
 
 		#LOOP EACH SECTION
-		foreach($data['settings'] as $sidebar){
-			$html .= '<li data-slug="'. esc_attr($sidebar['_slug']) .'" class="'. esc_attr($sidebar['_slug']) .'"><span>' . esc_html($sidebar['_label']) . '</span></li>';
+		foreach($options['settings'] as $sidebar){
+			if($sidebar['_slug'] == 'visual'){
+				if(isset($_GET['visual'])){
+					$html .= '<li data-slug="'. esc_attr($sidebar['_slug']) .'" class="'. esc_attr($sidebar['_slug']) .'"><span>' . esc_html($sidebar['_label']) . '</span></li>';
+				}
+			} else {
+				$html .= '<li data-slug="'. esc_attr($sidebar['_slug']) .'" class="'. esc_attr($sidebar['_slug']) .'"><span>' . esc_html($sidebar['_label']) . '</span></li>';
+			}
 		}
 
 		#RETURN SIDEBAR HTML

@@ -8,27 +8,48 @@
 <!-- ROW -->
 <!-- ROW -->
 <div class="htheme_form_row">
-	<div class="htheme_form_col_3">
+	<div class="htheme_form_col_12">
 		<div class="htheme_label"><?php esc_html_e('Footer layout', 'invogue'); ?></div>
 		<div class="htheme_label_excerpt"><?php esc_html_e('You have 3 layouts to choose from.', 'invogue'); ?></div>
 	</div>
-	<div class="htheme_form_col_9">
+	<div class="htheme_form_col_12">
 		<div class="htheme_footer_layout_selector" data-value="footer_sub" id="htheme_footer_layout_1"></div>
 		<div class="htheme_footer_layout_selector" data-value="footer_full" id="htheme_footer_layout_2"></div>
 		<div class="htheme_footer_layout_selector" data-value="footer_top" id="htheme_footer_layout_3"></div>
+		<div class="htheme_footer_layout_selector" data-value="footer_layout_one" id="htheme_footer_layout_4"></div>
+	</div>
+</div>
+<!-- ROW -->
+<!-- ROW -->
+<div class="htheme_form_row">
+	<div class="htheme_form_col_12">
+		<div class="htheme_label"><?php esc_html_e('Footer column layout', 'invogue'); ?></div>
+		<div class="htheme_label_excerpt"><?php esc_html_e('Set the amount of columns that you want displayed and add content via Appearance / Widgets in your WordPress backend.', 'invogue'); ?></div>
+	</div>
+	<div class="htheme_form_col_12">
+		<div class="htheme_col_layout_selector" data-value="4" id="htheme_col_footer_layout_1"></div>
+		<div class="htheme_col_layout_selector" data-value="3" id="htheme_col_footer_layout_2"></div>
+		<div class="htheme_col_layout_selector" data-value="2" id="htheme_col_footer_layout_3"></div>
 	</div>
 </div>
 <!-- ROW -->
 <!-- ROW -->
 <div class="htheme_form_row">
 	<div class="htheme_form_col_3">
-		<div class="htheme_label"><?php esc_html_e('Footer column layout', 'invogue'); ?></div>
-		<div class="htheme_label_excerpt"><?php esc_html_e('Set the amount of columns that you want displayed and add content via Appearance / Widgets in your WordPress backend.', 'invogue'); ?></div>
+		<div class="htheme_label"><?php esc_html_e('Footer logo upload', 'invogue'); ?></div>
+		<div class="htheme_label_excerpt">
+			<?php esc_html_e('Upload a logo that\'s approximately 150px in height, to make sure it\'s crisp on all retina screens.', 'invogue'); ?>
+		</div>
 	</div>
 	<div class="htheme_form_col_9">
-		<div class="htheme_col_layout_selector" data-value="4" id="htheme_col_footer_layout_1"></div>
-		<div class="htheme_col_layout_selector" data-value="3" id="htheme_col_footer_layout_2"></div>
-		<div class="htheme_col_layout_selector" data-value="2" id="htheme_col_footer_layout_3"></div>
+		<div class="htheme_button htheme_dark_btn htheme_media_uploader" data-connect="srcFooterLogo" data-multiple="false" data-size="full">
+			<?php esc_html_e('Upload', 'invogue'); ?>
+		</div>
+		<input type="hidden" name="srcFooterLogo" id="srcFooterLogo" class="htheme_field_fixed_400">
+	</div>
+	<div class="htheme_form_col_12">
+		<div class="htheme_image_holder" id="image_srcFooterLogo"></div>
+		<span class="htheme_remove_image" data-input="srcFooterLogo"><?php esc_html_e('Remove image [x]', 'invogue'); ?></span>
 	</div>
 </div>
 <!-- ROW -->

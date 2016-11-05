@@ -58,7 +58,6 @@
 	</div>
 </div>
 <!-- ROW -->
-
 <!-- ROW SPLIT -->
 <div class="htheme_row_split"></div>
 <!-- ROW SPLIT -->

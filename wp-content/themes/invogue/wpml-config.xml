@@ -1,0 +1,28 @@
+﻿<wpml-config>
+  <custom-types>
+    <custom-type translate="1">people</custom-type>
+    <custom-type translate="1">faq</custom-type>
+    <custom-type translate="1">lookbook</custom-type>
+    <custom-type translate="1">testimonial</custom-type>
+  </custom-types>
+  <admin-texts>
+    <key name="hero_theme_options">
+      <key name="settings">
+        <key name="general">
+          <key name="page_404_title"/>
+          <key name="page_404_sub"/>
+          <key name="page_404_description"/>
+          <key name="page_404_button_text"/>
+          <key name="page_404_button_url"/>
+        </key>
+        <key name="footer">
+          <key name="copyrightText"/>
+        </key>
+        <key name="newsletter">
+          <key name="title"/>
+          <key name="info"/>
+        </key>
+      </key>
+    </key>
+  </admin-texts>
+</wpml-config>

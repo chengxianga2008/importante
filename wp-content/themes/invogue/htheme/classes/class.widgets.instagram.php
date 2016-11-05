@@ -1,8 +1,7 @@
 <?php
 /**
- * THEME - Hello Friday
- * AUTHOR - HeroPlugins
- * URL - http://heroplugins.com/
+ * THEME - InVogue
+ * AUTHOR - HEROPLUGINS
  */
 
 #EXTEND WIDGET CLASS

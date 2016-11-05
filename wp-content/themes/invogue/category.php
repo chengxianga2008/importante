@@ -31,7 +31,15 @@ get_header(); ?>
 	#ADD ARGS TO QUERY
 	query_posts( $args );
 
+	$htheme_single_layout = $GLOBALS['htheme_global_object']['settings']['blog']['layout'];
 	$htheme_masonry = $GLOBALS['htheme_global_object']['settings']['blog']['masonry'];
+	$htheme_sidebar_status = false;
+	$htheme_with_sidebar = '';
+
+	if($htheme_single_layout == 'standard_sidebar'){
+		$htheme_sidebar_status = true;
+		$htheme_with_sidebar = 'htheme_with_sidebar';
+	}
 
 ?>
 
@@ -79,6 +87,17 @@ get_header(); ?>
 		</div>
 		<!-- ROW -->
 
+	<?php endif; ?>
+
+	<!-- CHECK SIDEBAR -->
+	<?php if($htheme_sidebar_status){ ?>
+	<!-- ROW -->
+	<div class="htheme_row htheme_padding_top">
+		<div class="htheme_container <?php echo esc_attr($htheme_with_sidebar); ?>">
+			<div class="htheme_col_9">
+	<?php } ?>
+	<!-- CHECK SIDEBAR -->
+
 		<?php if ( have_posts() ) : ?>
 
 			<?php
@@ -94,13 +113,13 @@ get_header(); ?>
 
 				<!-- VARAIBLES -->
 				<?php
-				if($htheme_masonry != 'true'){
-					#INCLUDE ARCHIVE POST TEMPLATE
-					get_template_part( 'htheme/templateparts/content/post', 'archive' );
-				} else {
-					#INCLUDE MASONRY POST TEMPLATE
-					get_template_part( 'htheme/templateparts/content/post', 'masonry' );
-				}
+					if($htheme_masonry != 'true'){
+						#INCLUDE ARCHIVE POST TEMPLATE
+						get_template_part( 'htheme/templateparts/content/post', 'archive' );
+					} else {
+						#INCLUDE MASONRY POST TEMPLATE
+						get_template_part( 'htheme/templateparts/content/post', 'masonry' );
+					}
 				?>
 
 			<?php endwhile; ?>
@@ -109,37 +128,52 @@ get_header(); ?>
 				</div>
 			<?php } ?>
 
+			<?php wp_reset_query(); ?>
+
+			<div class="htheme_pager_holder">
+				<?php echo paginate_links($pager_args); ?>
+			</div>
+
 			<!-- IF NO POSTS -->
-		<?php else : ?>
+			<?php else : ?>
 
-		<?php endif; wp_reset_query(); ?>
-
-		<div class="htheme_pager_holder">
-			<?php echo paginate_links($pager_args); ?>
-		</div>
-
-	<!-- IF NO POSTS -->
-	<?php else : ?>
-		<!-- ROW -->
-		<div class="htheme_row htheme_padding_bottom">
-			<div class="htheme_container">
-				<div class="htheme_inner_col">
-					<!-- TITLE DEFAULT -->
-					<div class="htheme_title_container" data-title-type="default">
-						<div class="htheme_title">
-							<h1>
-								<?php echo esc_html__('No posts', 'invogue'); ?>
-							</h1>
+			<!-- ROW -->
+			<div class="htheme_row htheme_padding_bottom">
+				<div class="htheme_container">
+					<div class="htheme_inner_col">
+						<!-- TITLE DEFAULT -->
+						<div class="htheme_title_container" data-title-type="default">
+							<div class="htheme_title">
+								<h1>
+									<?php echo esc_html__('No posts', 'invogue'); ?>
+								</h1>
+							</div>
+							<div class="htheme_sub_title htheme_h1_sub">
+								<?php echo esc_html__('The category has no posts.', 'invogue'); ?>
+							</div>
 						</div>
-						<div class="htheme_sub_title htheme_h1_sub">
-							<?php echo esc_html__('The category has no posts.', 'invogue'); ?>
+					</div>
+				</div>
+			</div>
+			<!-- ROW -->
+
+		<?php endif; ?>
+
+	<!-- CHECK SIDEBAR -->
+	<?php if($htheme_sidebar_status){ ?>
+				</div>
+				<div class="htheme_col_3">
+					<div class="htheme_inner_col">
+						<div class="htheme_sidebar_right">
+							<?php get_sidebar(); ?>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- ROW -->
-	<?php endif; ?>
+	<?php } ?>
+	<!-- CHECK SIDEBAR -->
 
 </div>
 <!-- CONTENT HOLDER -->

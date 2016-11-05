@@ -4,7 +4,7 @@ var global_product_object = [];
 var htheme_width = 0;
 
 jQuery(function(){
-    
+
     //SUPERZOOM
     Draggable.create(".htheme_image_box", {type:"x,y", edgeResistance:0.1, bounds:".htheme_superzoom_wrap", throwProps:true});
 
@@ -25,6 +25,8 @@ jQuery(function(){
             htheme_front_menu('default');
             htheme_check_logo('default');
         }
+    } else {
+        htheme_front_menu('mobile', tp);
     }
 
     //CHANGE MENU
@@ -45,6 +47,9 @@ jQuery(function(){
             } else {
                 htheme_show_top('hide');
             }
+        } else {
+            tp = jQuery(this).scrollTop();
+            htheme_front_menu('mobile', tp);
         }
         //SINGLE PRODUCT NEXT / PREVIOUS
         if(tp >= 350){
@@ -150,6 +155,10 @@ jQuery(function(){
         htheme_enable_tooltip();
         //ENABLE ADD TO CART CHECK
         htheme_ajax_check();
+    });
+
+    jQuery('.htheme_navigation').css({
+        'display':'table'
     });
 
 });
@@ -458,6 +467,10 @@ function htheme_enable_forms(type, form_id){
     jQuery('#'+form_id+' div').removeClass('htheme_field_error');
     var subject = jQuery('#'+form_id).attr('data-subject');
 
+    if(type == 'signup'){
+        jQuery('body').find('.htheme_signup_loader_overlay').show();
+    }
+
     //AJAX CALL
     jQuery.ajax({
         url: ajaxurl,
@@ -474,7 +487,6 @@ function htheme_enable_forms(type, form_id){
         if(data.status){
 
             if(type == 'signup'){
-
                 //CHECK EMAIL STATUS - ADD STATUS MESSAGE
                 if(data.email_status){
                     jQuery('#'+form_id+' .htheme_form_status_message').html('<div class="htheme_form_status_message_success">' + data.insert_msg + '</div>');
@@ -504,6 +516,8 @@ function htheme_enable_forms(type, form_id){
             });
 
         }
+
+        jQuery('body').find('.htheme_signup_loader_overlay').hide();
 
     }).fail(function(event){
         //console.log(event);
@@ -767,6 +781,8 @@ function htheme_parralax(){
 //ENABLE MISC FUNCTIONS
 function htheme_anable_misc_functions(){
 
+    var height = jQuery('.htheme_coupon_wrap').height();
+
     //ENABLE COUPON CLICK
     jQuery('body').find('.htheme_coupon_open').off().on('click', function(){
 
@@ -795,7 +811,10 @@ function htheme_anable_misc_functions(){
 
             jQuery(this).attr('data-toggle', 'close');
 
-            jQuery(this).html('Close coupon!');
+            jQuery('.htheme_coupon_wrap').find('input').height(height);
+            jQuery('.htheme_coupon_wrap').find('label').height(height-1);
+
+            jQuery(this).html(jQuery('.htheme_coupon_wrap').attr('data-text-close'));
 
         } else {
 
@@ -818,7 +837,7 @@ function htheme_anable_misc_functions(){
 
             jQuery(this).attr('data-toggle', 'open');
 
-            jQuery(this).html('Have a coupon?');
+            jQuery(this).html(jQuery('.htheme_coupon_wrap').attr('data-text-open'));
 
         }
 
@@ -1258,7 +1277,7 @@ function htheme_load_more_products(){
 //ENABLE SELECT BOXES
 function htheme_enable_tooltip(){
 
-    jQuery('body').find('[data-tooltip=true]').each(function(){
+    jQuery('body').find('[data-tooltip="true"]').each(function(){
 
         //SET THE CONTAINER TO RELAVTIVE
         jQuery(this).css({
@@ -1606,7 +1625,7 @@ function htheme_popup_preview(){
     var current_position = 1;
 
     //BIND CLICK
-    jQuery('.htheme_activate_preview').off().on('click', function(){
+    jQuery('.htheme_activate_preview').live('click', function(){
 
         //SET POSITION
         current_position = 1;
@@ -1845,6 +1864,8 @@ function htheme_popup_signup(){
 
     //VARAIBLES
     var window_height = jQuery(window).height();
+    var popup_delay = jQuery('.htheme_signup_holder').attr('data-delay');
+    var holder_delay = parseInt(popup_delay) + 1.5;
 
     //SET HEIGHT
     jQuery('.htheme_signup_preview').height(window_height+80);
@@ -1853,6 +1874,7 @@ function htheme_popup_signup(){
     TweenMax.to(jQuery('.htheme_signup_preview'), 1, {
             opacity:1,
             display:'table',
+            delay:parseInt(popup_delay),
             ease:Strong.easeOut,
             force3D:true
         }
@@ -1861,7 +1883,7 @@ function htheme_popup_signup(){
     TweenMax.to(jQuery('.htheme_signup_holder'), 1.5, {
             marginTop:-255,
             opacity:1,
-            delay:1.5,
+            delay:holder_delay,
             ease:Back.easeOut,
             force3D:true
         }
@@ -2081,7 +2103,7 @@ function htheme_search_overlay(){
 //ENABLE INPUTS
 function htheme_enable_inputs(){
 
-    jQuery('.htheme_form_holder, .htheme_signup_form').find(':text, textarea').each(function(){
+    jQuery('.htheme_form_holder, .htheme_signup_form, .htheme_search_inner, .htheme_coupon_wrap').find(':text, textarea').each(function(){
 
         jQuery(this).off().on({
             'focus': function(){
@@ -3495,24 +3517,14 @@ function htheme_active_item_hover(element, type){
             jQuery(element).off().on({
                 'mouseenter': function(){
                     var color = jQuery(this).attr('data-color');
-
                     TweenMax.to(jQuery(this).find('.htheme_social_text'), 0.2, {
                             opacity:1,
                             top:0,
                             ease:Power1.easeOut
                         }
                     );
-
-                    /*TweenMax.staggerFrom(mySpliteText.chars, 0.5, {
-                            opacity:0,
-                            rotation:-240,
-                            y:-100,
-                            ease:Back.easeOut
-                        }, 0.02
-                    );*/
                 },
                 'mouseleave': function(){
-
                     TweenMax.to(jQuery(this).find('.htheme_social_text'), 0.5, {
                             opacity:0,
                             top:20,
@@ -3536,9 +3548,9 @@ function htheme_set_menu_sub(window_width){
     jQuery('.htheme_mobile_menu_toggle').remove();
 
     jQuery('.htheme_nav ul').first().children('li').each(function(index, element){
-        jQuery(this).has('ul').addClass('htheme_icon_dropdown');
-        if(window_width < 768){
-            jQuery(this).has('ul').append('<div class="htheme_mobile_menu_toggle" data-toggle="open"></div>');
+        jQuery(this).has('ul, .htheme_mm_holder').addClass('htheme_icon_dropdown');
+        if(window_width <= 768){
+            jQuery(this).has('ul, .htheme_mm_holder').append('<div class="htheme_mobile_menu_toggle" data-toggle="open"></div>');
             htheme_bind_menu_sub();
             jQuery('.htheme_icon_dropdown, .htheme_icon_sub_dropdown').unbind();
         } else {
@@ -3546,9 +3558,9 @@ function htheme_set_menu_sub(window_width){
         }
         //ADD TOGGLE DIV
         jQuery(this).find('li').each(function(index, element){
-            jQuery(this).has('ul').addClass('htheme_icon_sub_dropdown');
-            if(window_width < 768){
-                jQuery(this).has('ul').append('<div class="htheme_mobile_menu_toggle" data-toggle="open"></div>');
+            jQuery(this).has('ul, .htheme_mm_holder').addClass('htheme_icon_sub_dropdown');
+            if(window_width <= 768){
+                jQuery(this).has('ul, .htheme_mm_holder').append('<div class="htheme_mobile_menu_toggle" data-toggle="open"></div>');
                 htheme_bind_menu_sub();
                 jQuery('.htheme_icon_dropdown, .htheme_icon_sub_dropdown').unbind();
             }else {
@@ -3575,9 +3587,10 @@ function htheme_bind_menu_hover(){
     jQuery('.htheme_icon_dropdown, .htheme_icon_sub_dropdown').off().on(
         {
             'mouseenter': function(){
-                TweenMax.to(jQuery(this).children('ul'), 0.5, {
+                TweenMax.to(jQuery(this).children('ul, .htheme_mm_holder'), 0.5, {
                         opacity:1,
                         display:'table',
+                        visibility:'visible',
                         ease:Strong.easeOut
                     }
                 );
@@ -3590,14 +3603,14 @@ function htheme_bind_menu_hover(){
                 }
             },
             'mouseleave': function(){
-                TweenMax.to(jQuery(this).children('ul'), 0.5, {
+                TweenMax.to(jQuery(this).children('ul, .htheme_mm_holder'), 0.2, {
                         opacity:0,
                         display:'none',
                         ease:Strong.easeOut
                     }
                 );
                 if(jQuery(this).hasClass('htheme_icon_sub_dropdown')){
-                    TweenMax.to(jQuery(this).children('ul'), 0.5, {
+                    TweenMax.to(jQuery(this).children('ul'), 0.2, {
                             top:-20,
                             ease:Strong.easeOut
                         }
@@ -3616,60 +3629,40 @@ function htheme_bind_menu_sub(){
     jQuery('.htheme_small_navigation').removeAttr('style');
     jQuery('.htheme_default_navigation').removeAttr('style');
 
-    jQuery('.htheme_mobile_menu_toggle').off().on('click', function(){
+    jQuery('.htheme_mobile_menu_toggle').each(function(){
 
-        //VARIABLES
-        var toggle = jQuery(this).attr('data-toggle');
-        var ul_to_toggle = jQuery(this).prev();
-        var move_height = 0;
+        jQuery(this).off().on('click', function(){
+            //VARIABLES
+            var toggle = jQuery(this).attr('data-toggle');
+            var ul_to_toggle = jQuery(this).prev();
+            var move_height = 0;
 
-        //CALC HEIGHT
-        jQuery(ul_to_toggle).first().children('li').each(function(){
-            move_height += jQuery(this).height();
-        });
+            //CALC HEIGHT
+            jQuery(ul_to_toggle).first().children('li').each(function(){
+                move_height += jQuery(this).height();
+            });
 
-        jQuery(ul_to_toggle).find('ul').each(function(){
-            if(jQuery(this).next('div').attr('data-toggle') === 'close'){
-                TweenMax.to(jQuery(this), 0.5, {
-                        height:0,
-                        ease:Strong.easeOut
-                    }
-                );
-                jQuery(jQuery(this)).css({
-                    'display':'inherit'
-                });
-                //SET TOGGLE STATUS
-                jQuery(this).next('div').attr('data-toggle', 'open')
+            jQuery(ul_to_toggle).find('ul').each(function(){
+                if(jQuery(this).next('div').attr('data-toggle') === 'close'){
+                    //MOVE MENU
+                    jQuery(this).css({'display':'none'});
+                    //SET TOGGLE STATUS
+                    jQuery(this).next('div').attr('data-toggle', 'open')
+                }
+            });
+
+            if(toggle === 'open'){
+                //MOVE MENU
+                ul_to_toggle.css({'display':'table'});
+                //SET TOGGLE
+                jQuery(this).attr('data-toggle', 'close');
+            } else {
+                //MOVE MENU
+                ul_to_toggle.css({'display':'none'});
+                //SET TOGGLE
+                jQuery(this).attr('data-toggle', 'open');
             }
         });
-
-        if(toggle === 'open'){
-            //MOVE MENU
-            TweenMax.to(ul_to_toggle, 0.5, {
-                    height:move_height,
-                    ease:Strong.easeOut,
-                    onComplete:function(){
-                        jQuery(ul_to_toggle).css({
-                            'display':'table'
-                        });
-                    }
-                }
-            );
-            //SET TOGGLE
-            jQuery(this).attr('data-toggle', 'close');
-        } else {
-            //MOVE MENU
-            TweenMax.to(ul_to_toggle, 0.5, {
-                    height:0,
-                    ease:Strong.easeOut
-                }
-            );
-            jQuery(ul_to_toggle).css({
-                'display':'inherit'
-            });
-            //SET TOGGLE
-            jQuery(this).attr('data-toggle', 'open');
-        }
 
     });
 
@@ -3887,7 +3880,7 @@ function htheme_hide_box_content(element){
 }
 
 //ADJUST MENU FOR STICKY
-function htheme_front_menu(type){
+function htheme_front_menu(type, tp){
 
     var window_width = jQuery(window).width();
 
@@ -3901,11 +3894,12 @@ function htheme_front_menu(type){
                 jQuery('.htheme_sticky_logo img').show();
             }
             //SET DEFAULT
-            TweenMax.to( jQuery('.htheme_default_navigation'), 1, {
+            TweenMax.to( jQuery('.htheme_default_navigation'), 0.3, {
                     height:60,
                     //backgroundColor:jQuery('.htheme_default_navigation').data('sticky-background'),
-                    ease:Strong.easeOut,
-                    boxShadow:"0px 0px 15px 5px rgb(0, 0, 0, 0.1)"
+                    ease:Strong.easeNone,
+                    boxShadow:"0px 0px 15px 5px rgb(0, 0, 0, 0.1)",
+                    force3D:true
                 }
             );
             //CHANGE SMALL NAV STYLES
@@ -3913,9 +3907,10 @@ function htheme_front_menu(type){
                 'display':'block',
                 'overflow':'hidden'
             });
-            TweenMax.to( jQuery('.htheme_small_navigation'), 1, {
+            TweenMax.to( jQuery('.htheme_small_navigation'), 0.3, {
                     height:0,
-                    ease:Strong.easeOut
+                    ease:Strong.easeNone,
+                    force3D:true
                 }
             );
             break;
@@ -3946,6 +3941,13 @@ function htheme_front_menu(type){
                     ease:Strong.easeOut
                 }
             );
+            break;
+        case 'mobile':
+            if(tp >= 10){
+                jQuery('.htheme_navigation').addClass('htheme_shift_mobile');
+            }else{
+                jQuery('.htheme_navigation').removeClass('htheme_shift_mobile');
+            }
             break;
     }
 

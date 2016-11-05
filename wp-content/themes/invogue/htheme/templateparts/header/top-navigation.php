@@ -66,7 +66,7 @@
 	<?php } ?>
 	<div class="htheme_default_navigation" data-height-default="80" data-height-sticky="60" data-height-mobile="60">
 		<div class="htheme_container">
-			<div class="htheme_inner_col">
+			<div class="htheme_inner_col htheme_mm_reference">
 				<div class="htheme_logo">
 					<!-- MAIN LOGO -->
 					<?php if($htheme_src_logo){ ?>
@@ -94,7 +94,22 @@
 				<div class="htheme_main_navigation">
 					<div class="htheme_inner_navigation">
 						<div class="htheme_nav">
-							<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => '', 'menu_id' => 'primary' ) ); ?>
+
+							<?php
+							$htheme_menu_args = array(
+								'theme_location' => 'primary',
+								'menu_class' => '',
+								'menu_id' => 'primary',
+							);
+							if ( has_nav_menu( 'primary' ) ) {
+								$htheme_menu_args['walker'] = new htheme_walker();
+							} else {
+								$htheme_menu_args['link_before'] = '<span>';
+								$htheme_menu_args['link_after'] = '</span>';
+							}
+							wp_nav_menu( $htheme_menu_args );
+							?>
+
 						</div>
 						<?php if($htheme_header_search_status == 'true' || class_exists( 'WooCommerce' )){ ?>
 						<div class="htheme_icon_nav" style="<?php echo esc_attr($nav_icon_style); ?>">

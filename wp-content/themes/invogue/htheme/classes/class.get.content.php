@@ -233,6 +233,18 @@ class htheme_getcontent{
 							if(!empty($marker['htheme_map_marker_heading'])){
 								$m_heading = $marker['htheme_map_marker_heading'];
 							}
+							$m_info = '';
+							if(!empty($marker['htheme_map_marker_info'])){
+								$m_info = $marker['htheme_map_marker_info'];
+							}
+							$m_lat = 0;
+							if(!empty($marker['htheme_map_marker_lat'])){
+								$m_lat = $marker['htheme_map_marker_lat'];
+							}
+							$m_long = 0;
+							if(!empty($marker['htheme_map_marker_long'])){
+								$m_long = $marker['htheme_map_marker_long'];
+							}
 							?>
 
 							//WINDOW INFO
@@ -242,7 +254,7 @@ class htheme_getcontent{
 									'<?php echo esc_html($m_heading); ?>'+
 								'</h4>'+
 								'<div class="htheme_default_content">'+
-									'<?php echo esc_html($marker['htheme_map_marker_info']); ?>'+
+									'<?php echo esc_html($m_info); ?>'+
 								'</div>'+
 								'</div>';
 
@@ -253,7 +265,7 @@ class htheme_getcontent{
 							//MARKER
 							var marker<?php echo esc_attr($count); ?> = new google.maps.Marker({
 								map: map_<?php echo esc_attr($unique_id); ?>,
-								position: {lat: <?php echo esc_attr($marker['htheme_map_marker_lat']); ?>, lng: <?php echo esc_attr($marker['htheme_map_marker_long']); ?>},
+								position: {lat: <?php echo esc_attr($m_lat); ?>, lng: <?php echo esc_attr($m_long); ?>},
 								icon: '<?php echo esc_url($marker_img); ?>'
 							});
 
@@ -446,8 +458,7 @@ class htheme_getcontent{
 
 		#GET FILE CONTENTS
 		$json = wp_remote_fopen($json_link);
-		//$obj = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
-		$obj = json_decode($json, true);
+		$obj = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
 
 		$html = '';
 
@@ -930,12 +941,25 @@ class htheme_getcontent{
 
 		$the_posts = get_posts($args);
 
+		#VARAIBLES
+		$htheme_carousel_desktop = 4;
+		$htheme_carousel_tablet = 3;
+		$htheme_carousel_mobile = 1;
+
+		#CHECK DISPLAY ITEMS
+		if($atts['htheme_blog_carousel_layout'] == 'contained_row'):
+			if(isset($atts['htheme_carousel_desktop'])): $htheme_carousel_desktop = $atts['htheme_carousel_desktop']; endif;
+			if(isset($atts['htheme_carousel_tablet'])): $htheme_carousel_tablet = $atts['htheme_carousel_tablet']; endif;
+			if(isset($atts['htheme_carousel_mobile'])): $htheme_carousel_mobile = $atts['htheme_carousel_mobile']; endif;
+		endif;
+
+
 		if($the_posts){
 
 			$html .= '<!-- ROW -->';
 			$html .= '<div class="htheme_row">';
 				if($atts['htheme_blog_carousel_layout'] == 'contained_row'){ $html .= '<div class="htheme_container">'; }
-					$html .= '<div class="htheme_post_slider htheme_horz_slider" id="'.esc_attr($unique_id).'" data-items-big-desktop="6" data-items-desktop="4" data-items-tablet="3" data-items-mobile="1">';
+					$html .= '<div class="htheme_post_slider htheme_horz_slider" id="'.esc_attr($unique_id).'" data-items-big-desktop="6" data-items-desktop="'.esc_attr($htheme_carousel_desktop).'" data-items-tablet="'.esc_attr($htheme_carousel_tablet).'" data-items-mobile="'.esc_attr($htheme_carousel_mobile).'">';
 						$html .= '<div class="htheme_post_slider_wrapper" data-height="372">';
 							$html .= '<div class="htheme_post_slider_inner">';
 								foreach($the_posts as $post){
@@ -1047,9 +1071,9 @@ class htheme_getcontent{
 
 		#CHECK EXCERPT
 		if($excerpt != ''){
-			$return = rtrim(substr(strip_tags(esc_html($excerpt)), $start, $end), ' ').'...';
+			$return = rtrim(substr(esc_html(strip_tags($excerpt)), $start, $end), ' ').'...';
 		} else {
-			$return = rtrim(substr(strip_tags(esc_html($content)), $start, $end), ' ').'...';
+			$return = rtrim(substr(esc_html(strip_tags($content)), $start, $end), ' ').'...';
 		}
 
 		#RETURN
@@ -1070,7 +1094,8 @@ class htheme_getcontent{
 		$args = array(
 			'post_type' => 'lookbook',
 			'numberposts' => -1,
-			'post_in' => $atts['htheme_lookbooks'],
+			'post__in' => explode(',' ,$atts['htheme_lookbooks']),
+			'orderby' => 'post__in',
 		);
 
 		$the_posts = get_posts($args);

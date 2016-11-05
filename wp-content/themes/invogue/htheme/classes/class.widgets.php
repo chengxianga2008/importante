@@ -26,6 +26,7 @@ class htheme_widgets extends WP_Widget{
 	 */
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'];
+
 		if ( ! empty( $instance['title'] ) || ! empty( $instance['sub_title'] ) || ! empty( $instance['excerpt'] ) || ! empty( $instance['widget_image'] )  ) {
 			?>
 				<div class="htheme_image_text_widget">
@@ -62,7 +63,6 @@ class htheme_widgets extends WP_Widget{
 		$excerpt = ! empty( $instance['excerpt'] ) ? $instance['excerpt'] : esc_html__( '', 'invogue' );
 		$widget_image = ! empty( $instance['widget_image'] ) ? $instance['widget_image'] : esc_html__( '', 'invogue' );
 		?>
-
 		<p>
 			<label for="<?php echo esc_attr($this->get_field_id( 'title' )); ?>"><?php esc_html_e( 'Title:', 'invogue' ); ?></label>
 			<input class="widefat" id="<?php echo esc_attr($this->get_field_id( 'title' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'title' )); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">

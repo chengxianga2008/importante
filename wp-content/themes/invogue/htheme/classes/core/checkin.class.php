@@ -19,6 +19,7 @@
 		private $theme_checkin_url;
 		private $theme_update_info_url;
 		private $blog_url;
+		private $lock = false;
 
 		#CONSTRUCT
 		public function __construct($theme_slug,$theme_name,$theme_friendly_name,$api_version){
@@ -40,6 +41,10 @@
 
 		#CHECKIN WITH API
 		public function htheme_check_in($transient){
+			if(!$this->lock){
+				$this->lock = true;
+				return $transient;
+			}
 			//check transient
 			if(empty($transient->checked)){
 				return $transient;

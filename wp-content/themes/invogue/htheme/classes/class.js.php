@@ -49,6 +49,35 @@ class htheme_js{
 
 	}
 
+	#FOOTER JS CODE
+	public function htheme_get_facebook_js(){
+
+		#VARIABLES
+		$htheme_facebook_id = $GLOBALS['htheme_global_object']['settings']['sharing']['facebookId'];
+		$htheme_js = '';
+
+		$htheme_js .= '
+			"use strict";
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId      : '.esc_html($htheme_facebook_id).',
+					xfbml      : true,
+					version    : "v2.7"
+				});
+			};
+			(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, "script", "facebook-jssdk"));
+		';
+
+		return $htheme_js;
+
+	}
+
 	#CREATE CSS
 	public function htheme_get_pageload_js(){
 

@@ -9,6 +9,19 @@
 		define('HEROTHEME_FRAMEWORK_DIR', get_template_directory_uri() . '/htheme/');
 	}
 
+	#WPML
+	include get_template_directory() . '/installer/loader.php';
+	WP_Installer_Setup($wp_installer_instance,
+		array(
+			'plugins_install_tab' => 1, // optional, default value: 0
+			'affiliate_id:wpml' => '146518', // optional, default value: empty
+			'affiliate_key:wpml' => 'djYvyztoGbnC', // optional, default value: empty
+			'src_name' => 'inVogue', // optional, default value: empty, needed for coupons
+			'src_author' => '',// optional, default value: empty, needed for coupons
+			'repositories_include' => array('wpml') // optional, default to empty (show all)
+		)
+	);
+
 	#CLASSES
 	require_once(get_template_directory() . '/htheme/classes/class.tgm.php');
 	require_once(get_template_directory() . '/htheme/classes/class.options.php');
@@ -39,6 +52,7 @@
 	#WIDGETS
 	require_once(get_template_directory() . '/htheme/classes/class.widgets.php');
 	require_once(get_template_directory() . '/htheme/classes/class.widgets.instagram.php');
+	require_once(get_template_directory() . '/htheme/classes/class.widgets.recent.php');
 
 	#THEME INCLUDES
 	require_once(get_template_directory() . '/htheme/classes/helper/check.helper.php');
@@ -47,6 +61,10 @@
 	require_once(get_template_directory() . '/htheme/classes/core/checkin.class.php');
 	require_once(get_template_directory() . '/htheme/classes/core/update_object.class.php');
 
+	#MEGA MENU
+	require_once(get_template_directory() . '/htheme/classes/class.menu.walker.php');
+	require_once(get_template_directory() . '/htheme/classes/functions.menu.php');
+
 	#THEME ROOT INVOGUE
 	class htheme_invogue{
 
@@ -54,7 +72,7 @@
 		private $theme_name = 'invogue';
 		private $theme_slug = 'invogue';
 		private $theme_friendly_name = 'InVogue';
-		private $theme_version = '1.11.1';
+		private $theme_version = '1.13.10';
 		private $api_version = '1.0.0';
 
 		#CLASS VARS
@@ -136,7 +154,7 @@
 				'slug'               => 'js_composer', // The plugin slug (typically the folder name).
 				'source'             => get_template_directory() . '/htheme/plugins/js_composer.zip', // The plugin source.
 				'required'           => true, // If false, the plugin is only 'recommended' instead of required.
-				'version'            => '4.12', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
+				'version'            => '4.12.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
 				'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
 				'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
 				'external_url'       => '', // If set, overrides default API URL and points to an external URL.
@@ -147,7 +165,7 @@
 				'slug'               => 'revslider', // The plugin slug (typically the folder name).
 				'source'             => get_template_directory() . '/htheme/plugins/revslider.zip', // The plugin source.
 				'required'           => true, // If false, the plugin is only 'recommended' instead of required.
-				'version'            => '5.2.6', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
+				'version'            => '5.3.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
 				'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
 				'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
 				'external_url'       => '', // If set, overrides default API URL and points to an external URL.
@@ -246,6 +264,7 @@
 	function htheme_register_widget() {
 		register_widget( 'htheme_widgets' );
 		register_widget( 'htheme_widgets_instagram' );
+		register_widget( 'htheme_widgets_recent' );
 	}
 
 	/*
@@ -741,7 +760,8 @@
 
 	#WPML POST TRANSLATIONS
 	function htheme_show_lang_available(){
-		if ( function_exists('icl_object_id') ) {
+		$wpml_enable = $GLOBALS['htheme_global_object']['settings']['wpml']['wpmlSelector'];
+		if ( function_exists('icl_object_id') && $wpml_enable == 'wpmlSelector') {
 			$languages = icl_get_languages('skip_missing=1');
 			if(1 < count($languages)){
 			echo '<div class="htheme_post_languages">';
@@ -757,19 +777,35 @@
 
 	#ENABLE EXCERPT
 	add_action('icl_post_languages', 'htheme_show_lang_available', 10, 3);
-	
-	
-	function htheme_nav_menu_objects(array $sorted_menu_items){
-		
-		return array_filter($sorted_menu_items, function ($e) {
-			
-			if(is_user_logged_in()){
-				return true;
-			}else{
-				return $e->title != 'Shop' && $e->menu_item_parent != '1485';
-			}
-			
-    	});
+
+	#VISUAL COMPOSER
+	if ( defined( 'WPB_VC_VERSION' ) ) {
+		vc_set_as_theme();
 	}
-	
-	add_filter( 'wp_nav_menu_objects', 'htheme_nav_menu_objects', 10, 1);
+
+	#ARCHIVE DESCRIPTION
+	remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
+	add_action( 'woocommerce_archive_description', 'htheme_product_category_description', 10 );
+
+	function htheme_product_category_description(){
+
+		#QUERIED OBJECT
+		$get_category_obj = get_queried_object();
+
+		$thumbnail_id = get_woocommerce_term_meta( $get_category_obj->term_id, 'thumbnail_id', true );
+	    $image = wp_get_attachment_url( $thumbnail_id );
+
+		if ( is_tax( array( 'product_cat', 'product_tag' ) ) && 0 === absint( get_query_var( 'paged' ) ) ) {
+
+			if ( wc_format_content( term_description() ) ) {
+				echo '<div class="term-description">';
+					if(!empty($image)):
+						echo '<img width="150" src="'.$image.'">';
+					endif;
+					echo '<h4>' . $get_category_obj->name .'</h4>';
+					echo wc_format_content( term_description() );
+				echo '</div>';
+			}
+		}
+
+	}

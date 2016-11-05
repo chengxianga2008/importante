@@ -1376,6 +1376,58 @@ class htheme_composer{
 						'std' => '',
 						"description" => esc_html__( "Choose the layout for your blog post carousel.", "js_composer" ),
 					),
+					array(
+						"type" => "dropdown",
+						"holder" => "div",
+						"class" => "htheme_element_class",
+						"heading" => esc_html__( "Desktop items", "js_composer" ),
+						"param_name" => "htheme_carousel_desktop",
+						"value" => array(
+							'1 Item'   => '1',
+							'2 Items'   => '2',
+							'3 Items'   => '3',
+							'4 Items'   => '4',
+							'5 Items'   => '5',
+							'6 Items'   => '6',
+							'7 Items'   => '7',
+							'8 Items'   => '8',
+							'9 Items'   => '9',
+							'10 Items'   => '10'
+						),
+						'std' => '4',
+						"dependency" => Array('element' => "htheme_blog_carousel_layout", 'value' => array('contained_row'))
+					),
+					array(
+						"type" => "dropdown",
+						"holder" => "div",
+						"class" => "htheme_element_class",
+						"heading" => esc_html__( "Tablet items", "js_composer" ),
+						"param_name" => "htheme_carousel_tablet",
+						"value" => array(
+							'1 Item'   => '1',
+							'2 Items'   => '2',
+							'3 Items'   => '3',
+							'4 Items'   => '4',
+							'5 Items'   => '5'
+						),
+						'std' => '3',
+						"dependency" => Array('element' => "htheme_blog_carousel_layout", 'value' => array('contained_row'))
+					),
+					array(
+						"type" => "dropdown",
+						"holder" => "div",
+						"class" => "htheme_element_class",
+						"heading" => esc_html__( "Mobile items", "js_composer" ),
+						"param_name" => "htheme_carousel_mobile",
+						"value" => array(
+							'1 Item'   => '1',
+							'2 Items'   => '2',
+							'3 Items'   => '3',
+							'4 Items'   => '4'
+						),
+						'std' => '1',
+						"dependency" => Array('element' => "htheme_blog_carousel_layout", 'value' => array('contained_row'))
+					),
 				)
 			)
 		);
@@ -1691,88 +1743,97 @@ class htheme_composer{
 	#REMOVE DEFAULTS
 	public function htheme_remove_default_elements(){
 
-		/*vc_remove_element("vc_row");*/
-		vc_remove_element("vc_cta_button2");
-		vc_remove_element("vc_button2");
-		vc_remove_element("vc_masonry_media_grid");
-		vc_remove_element("vc_masonry_grid");
-		vc_remove_element("vc_masonry_grid");
-		vc_remove_element("vc_media_grid");
-		vc_remove_element("vc_basic_grid");
-		vc_remove_element("vc_cta");
-		vc_remove_element("vc_btn");
-		vc_remove_element("vc_custom_heading");
-		vc_remove_element("vc_empty_space");
-		vc_remove_element("vc_line_chart");
-		vc_remove_element("vc_round_chart");
-		vc_remove_element("vc_pie");
-		vc_remove_element("vc_raw_js");
-		vc_remove_element("vc_raw_html");
-		vc_remove_element("vc_video");
-		vc_remove_element("vc_widget_sidebar");
-		vc_remove_element("vc_tta_pageable");
-		vc_remove_element("vc_tta_accordion");
-		vc_remove_element("vc_tta_tour");
-		vc_remove_element("vc_tta_tabs");
-		vc_remove_element("vc_gallery");
-		vc_remove_element("vc_gallery");
-		vc_remove_element("vc_text_separator");
+		//vc_remove_element("vc_row");
 		//vc_remove_element("vc_icon");
 		//vc_remove_element("vc_column_text");
-		vc_remove_element("vc_button");
-		vc_remove_element("vc_posts_slider");
-		vc_remove_element("vc_gmaps");
-		vc_remove_element("vc_teaser_grid");
-		vc_remove_element("vc_progress_bar");
-		vc_remove_element("vc_facebook");
-		vc_remove_element("vc_tweetmeme");
-		vc_remove_element("vc_googleplus");
-		vc_remove_element("vc_facebook");
-		vc_remove_element("vc_pinterest");
-		vc_remove_element("vc_message");
-		vc_remove_element("vc_posts_grid");
-		vc_remove_element("vc_carousel");
-		vc_remove_element("vc_flickr");
-		vc_remove_element("vc_tour");
-		vc_remove_element("vc_separator");
-		vc_remove_element("vc_single_image");
-		vc_remove_element("vc_cta_button");
-		vc_remove_element("vc_accordion");
-		vc_remove_element("vc_accordion_tab");
-		vc_remove_element("vc_toggle");
-		vc_remove_element("vc_tabs");
-		vc_remove_element("vc_tab");
-		vc_remove_element("vc_images_carousel");
-		vc_remove_element("vc_wp_archives");
-		vc_remove_element("vc_wp_calendar");
-		vc_remove_element("vc_wp_categories");
-		vc_remove_element("vc_wp_custommenu");
-		vc_remove_element("vc_wp_links");
-		vc_remove_element("vc_wp_meta");
-		vc_remove_element("vc_wp_pages");
-		vc_remove_element("vc_wp_posts");
-		vc_remove_element("vc_wp_recentcomments");
-		vc_remove_element("vc_wp_rss");
-		vc_remove_element("vc_wp_search");
-		vc_remove_element("vc_wp_tagcloud");
-		vc_remove_element("vc_wp_text");
-		vc_remove_element("woocommerce_cart");
-		vc_remove_element("woocommerce_checkout");
-		vc_remove_element("woocommerce_order_tracking");
-		vc_remove_element("woocommerce_my_account");
-		vc_remove_element("recent_products");
-		vc_remove_element("featured_products");
-		vc_remove_element("product");
-		vc_remove_element("products");
-		vc_remove_element("add_to_cart");
-		vc_remove_element("add_to_cart_url");
-		vc_remove_element("product_page");
-		vc_remove_element("product_category");
-		vc_remove_element("product_categories");
-		vc_remove_element("sale_products");
-		vc_remove_element("best_selling_products");
-		vc_remove_element("top_rated_products");
-		vc_remove_element("product_attribute");/**/
+
+		#VARAIBLES
+		$htheme_visual_elements = $GLOBALS['htheme_global_object']['settings']['visual']['visualElements'];
+
+		#ALWAYS OFF / COMMENT OUT TO ENABLE ELEMENTS
+		if($htheme_visual_elements == 'false'):
+
+			vc_remove_element("vc_cta_button2");
+			vc_remove_element("vc_button2");
+			vc_remove_element("vc_masonry_media_grid");
+			vc_remove_element("vc_masonry_grid");
+			vc_remove_element("vc_masonry_grid");
+			vc_remove_element("vc_media_grid");
+			vc_remove_element("vc_basic_grid");
+			vc_remove_element("vc_cta");
+			vc_remove_element("vc_btn");
+			vc_remove_element("vc_custom_heading");
+			vc_remove_element("vc_empty_space");
+			vc_remove_element("vc_line_chart");
+			vc_remove_element("vc_round_chart");
+			vc_remove_element("vc_pie");
+			vc_remove_element("vc_raw_js");
+			vc_remove_element("vc_raw_html");
+			vc_remove_element("vc_video");
+			vc_remove_element("vc_widget_sidebar");
+			vc_remove_element("vc_tta_pageable");
+			vc_remove_element("vc_tta_accordion");
+			vc_remove_element("vc_tta_tour");
+			vc_remove_element("vc_tta_tabs");
+			vc_remove_element("vc_gallery");
+			vc_remove_element("vc_gallery");
+			vc_remove_element("vc_text_separator");
+			vc_remove_element("vc_button");
+			vc_remove_element("vc_posts_slider");
+			vc_remove_element("vc_gmaps");
+			vc_remove_element("vc_teaser_grid");
+			vc_remove_element("vc_progress_bar");
+			vc_remove_element("vc_facebook");
+			vc_remove_element("vc_tweetmeme");
+			vc_remove_element("vc_googleplus");
+			vc_remove_element("vc_facebook");
+			vc_remove_element("vc_pinterest");
+			vc_remove_element("vc_message");
+			vc_remove_element("vc_posts_grid");
+			vc_remove_element("vc_carousel");
+			vc_remove_element("vc_flickr");
+			vc_remove_element("vc_tour");
+			vc_remove_element("vc_separator");
+			vc_remove_element("vc_single_image");
+			vc_remove_element("vc_cta_button");
+			vc_remove_element("vc_accordion");
+			vc_remove_element("vc_accordion_tab");
+			vc_remove_element("vc_toggle");
+			vc_remove_element("vc_tabs");
+			vc_remove_element("vc_tab");
+			vc_remove_element("vc_images_carousel");
+			vc_remove_element("vc_wp_archives");
+			vc_remove_element("vc_wp_calendar");
+			vc_remove_element("vc_wp_categories");
+			vc_remove_element("vc_wp_custommenu");
+			vc_remove_element("vc_wp_links");
+			vc_remove_element("vc_wp_meta");
+			vc_remove_element("vc_wp_pages");
+			vc_remove_element("vc_wp_posts");
+			vc_remove_element("vc_wp_recentcomments");
+			vc_remove_element("vc_wp_rss");
+			vc_remove_element("vc_wp_search");
+			vc_remove_element("vc_wp_tagcloud");
+			vc_remove_element("vc_wp_text");
+			vc_remove_element("woocommerce_cart");
+			vc_remove_element("woocommerce_checkout");
+			vc_remove_element("woocommerce_order_tracking");
+			vc_remove_element("woocommerce_my_account");
+			vc_remove_element("recent_products");
+			vc_remove_element("featured_products");
+			vc_remove_element("product");
+			vc_remove_element("products");
+			vc_remove_element("add_to_cart");
+			vc_remove_element("add_to_cart_url");
+			vc_remove_element("product_page");
+			vc_remove_element("product_category");
+			vc_remove_element("product_categories");
+			vc_remove_element("sale_products");
+			vc_remove_element("best_selling_products");
+			vc_remove_element("top_rated_products");
+			vc_remove_element("product_attribute");
+
+		endif;
 	}
 
 	#REMOVE ALL DEFAULT TEMPLATES

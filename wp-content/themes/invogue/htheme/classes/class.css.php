@@ -28,6 +28,9 @@ class htheme_css{
 
 		$htheme_slider_height = $GLOBALS['htheme_global_object']['settings']['slider']['height'];
 
+		$htheme_mega_styles = $GLOBALS['htheme_global_object']['settings']['megamenu']['menuItems'];
+		$htheme_typography_mega_options = $GLOBALS['htheme_global_object']['settings']['megamenu']['fonts'];
+
 		$htheme_footer_primary_background = $GLOBALS['htheme_global_object']['settings']['footer']['backgroundPrimary'];
 		$htheme_footer_secondary_background = $GLOBALS['htheme_global_object']['settings']['footer']['backgroundSecondary'];
 		$htheme_logo_height = $GLOBALS['htheme_global_object']['settings']['header']['logoHeight'];
@@ -112,6 +115,29 @@ class htheme_css{
 					top:32px;
 				}
 			';
+
+			$htheme_css .= '@media (min-width: 601px) and (max-width: 768px) {';
+				$htheme_css .= '
+					.htheme_navigation{
+						top:46px;
+					}
+					.htheme_shift_mobile{
+						top:46px;
+					}
+				';
+			$htheme_css .= '}';
+
+			$htheme_css .= '@media (max-width: 600px) {';
+				$htheme_css .= '
+					.htheme_navigation{
+						top:46px;
+					}
+					.htheme_shift_mobile{
+						top:0;
+					}
+				';
+			$htheme_css .= '}';
+
 		endif;
 
 		#CHECK IF SEARCH ICON IS ON
@@ -426,7 +452,15 @@ class htheme_css{
 					.calendar_wrap,
 					.htheme_caution_yellow,
 					.shipping,
-					.htheme_shipping_holder{
+					.htheme_shipping_holder,
+					.vc_message_box,
+					.vc_toggle_content,
+					.wpb_raw_html,
+					.vc_grid-filter-item,
+					.vc_custom_heading p,
+					.htheme_vc_row_contained .widget,
+					.htheme_special_price,
+					.htheme_mega_content{
 						color:'.$this->htheme_get_accent($type['color']).';
 						font-family:'.$type['family'].';
 						'.$this->htheme_return_weight_style($type['weight']).';
@@ -437,12 +471,12 @@ class htheme_css{
 					}
 					.htheme_signup_show_check label{
 						color:'.$this->htheme_get_accent($type['color']).' !important;
-						font-family:'.$type['family'].' !important;;
+						font-family:'.$type['family'].' !important;
 						'.$this->htheme_return_weight_style($type['weight']).' !important;
-						font-size:'.$type['size'].' !important;;
-						text-transform:'.$type['transform'].' !important;;
-						letter-spacing:'.$type['spacing'].' !important;;
-						line-height:'.$type['lineHeight'].' !important;;
+						font-size:'.$type['size'].' !important;
+						text-transform:'.$type['transform'].' !important;
+						letter-spacing:'.$type['spacing'].' !important;
+						line-height:'.$type['lineHeight'].' !important;
 					}					
 					[class^="htheme_icon_people_"],
 					.htheme_product_nav > span{
@@ -451,6 +485,12 @@ class htheme_css{
 					.htheme_instagram_social .htheme_instagram_social_item{
 						font-family:'.$type['family'].';
 					}	
+					[class^="vc_cta"],
+					.vc_label,
+					[class^="vc_btn3"]{
+						font-family:'.$type['family'].';
+						'.$this->htheme_return_weight_style($type['weight']).';
+					}
 				';
 				break;
 				case 'h1':
@@ -578,7 +618,8 @@ class htheme_css{
 					.htheme_position .htheme_inner_col span,
 					.htheme_position .quantity .qty,
 					.cart-subtotal,
-					.woocommerce table thead{
+					.woocommerce table thead,
+					.vc_tta-title-text{
 						color:'.$this->htheme_get_accent($type['color']).';
 						font-family:'.$type['family'].';
 						'.$this->htheme_return_weight_style($type['weight']).';
@@ -646,7 +687,8 @@ class htheme_css{
 					h6,
 					cite,
 					.wp-caption-text,
-					.no-comments{
+					.no-comments,
+					.vc_figure-caption{
 						color:'.$this->htheme_get_accent($type['color']).';
 						font-family:'.$type['family'].';
 						'.$this->htheme_return_weight_style($type['weight']).';
@@ -869,7 +911,8 @@ class htheme_css{
 					.htheme_default_content a,
 					.htheme_continue_shopping,
 					.woocommerce-MyAccount-navigation a,
-					.woocommerce-Address-title a{
+					.woocommerce-Address-title a,
+					.htheme_vc_row_contained .widget a{
 						color:'.$this->htheme_get_accent($type['color']).';
 						font-family:'.$type['family'].';
 						'.$this->htheme_return_weight_style($type['weight']).';
@@ -888,7 +931,8 @@ class htheme_css{
 					.htheme_continue_shopping:hover,
 					.woocommerce-MyAccount-navigation a:hover,
 					.woocommerce-Address-title a:hover,
-					.woocommerce-MyAccount-navigation .is-active a{
+					.woocommerce-MyAccount-navigation .is-active a,
+					.htheme_vc_row_contained .widget a:hover{
 						color:'.$this->htheme_get_accent($type['color']).' !important;
 						font-family:'.$type['family'].';
 						'.$this->htheme_return_weight_style($type['weight']).';
@@ -1008,7 +1052,8 @@ class htheme_css{
 						text-transform:'.$footer_options['transform'].';
 						letter-spacing:'.$footer_options['spacing'].';
 					}
-					.htheme_main_footer .widget ul li a, .htheme_footer_content * a{
+					.htheme_main_footer .widget ul li a, .htheme_footer_content * a,
+					.htheme_footer_layout_one_social_wrap a span{
 						color:'.$footer_options['linkColor'].';
 						font-family:'.$footer_options['family'].';
 						'.$this->htheme_return_weight_style($footer_options['weight']).';
@@ -1016,14 +1061,17 @@ class htheme_css{
 						text-transform:'.$footer_options['transform'].';
 						letter-spacing:'.$footer_options['spacing'].';
 					}
-					.htheme_main_footer .widget ul li a:hover, .htheme_footer_content * a:hover{
-						color:'.$footer_options['hoverColor'].';
+					.htheme_main_footer .widget ul li a:hover, .htheme_footer_content * a:hover,
+					.htheme_footer_layout_one_social_wrap a:hover span,
+					.htheme_footer_layout_one_social [class^="htheme_icon_social_"]:hover:before{
+						color:'.$footer_options['hoverColor'].' !important;
 					}
 				';
 				break;
 				case 'footer_copyright':
 				$htheme_css .= '
-					.htheme_sub_footer .htheme_footer_nav_wrap{
+					.htheme_sub_footer .htheme_footer_nav_wrap,
+					.htheme_footer_layout_one .htheme_footer_nav_wrap{
 						color:'.$footer_options['color'].';
 						font-family:'.$footer_options['family'].';
 						'.$this->htheme_return_weight_style($footer_options['weight']).';
@@ -1031,7 +1079,8 @@ class htheme_css{
 						text-transform:'.$footer_options['transform'].';
 						letter-spacing:'.$footer_options['spacing'].';
 					}
-					.htheme_sub_footer .htheme_footer_nav_wrap a{
+					.htheme_sub_footer .htheme_footer_nav_wrap a,					
+					.htheme_footer_layout_one .htheme_footer_nav_wrap a{
 						color:'.$footer_options['linkColor'].';
 						font-family:'.$footer_options['family'].';
 						'.$this->htheme_return_weight_style($footer_options['weight']).';
@@ -1039,16 +1088,20 @@ class htheme_css{
 						text-transform:'.$footer_options['transform'].';
 						letter-spacing:'.$footer_options['spacing'].';
 					}
-					.htheme_sub_footer .htheme_footer_nav_wrap a:hover{
+					.htheme_sub_footer .htheme_footer_nav_wrap a:hover,
+					.htheme_footer_layout_one .htheme_footer_nav_wrap a:hover{
 						color:'.$footer_options['hoverColor'].';
 					}
-					.htheme_sub_footer .htheme_footer_nav_wrap a:hover:after{
+					.htheme_sub_footer .htheme_footer_nav_wrap a:hover:after,
+					.htheme_footer_layout_one .htheme_footer_nav_wrap a:hover:after{
 						color:'.$footer_options['linkColor'].';
 					}
-					.htheme_sub_footer .htheme_footer_social_wrap a:before{
+					.htheme_sub_footer .htheme_footer_social_wrap a:before,
+					.htheme_footer_layout_one .htheme_footer_nav_wrap a:before{
 						color:'.$footer_options['linkColor'].' !important;
 					}
-					.htheme_sub_footer .htheme_footer_social_wrap a:hover:before{
+					.htheme_sub_footer .htheme_footer_social_wrap a:hover:before,
+					.htheme_footer_layout_one .htheme_footer_nav_wrap a:hover:before{
 						color:'.$footer_options['hoverColor'].' !important;
 					}
 				';
@@ -1058,7 +1111,8 @@ class htheme_css{
 
 		#FOOTER HOLDER
 		$htheme_css .= '
-			.htheme_footer_holder{
+			.htheme_footer_holder,
+			.htheme_footer_logo:before{
 				background-color:'.$htheme_footer_primary_background.';
 			}
 			.htheme_footer_holder .htheme_image_instagram_widget a{
@@ -1318,6 +1372,104 @@ class htheme_css{
 			}
 		}
 
+		foreach($htheme_typography_mega_options as $mega_options){
+			switch($mega_options['slug']){
+				case 'mega_heading':
+					$htheme_css .= '
+						.htheme_mega_title{
+							color:'.$this->htheme_get_accent($mega_options['color']).';
+							font-family:'.$mega_options['family'].';
+							'.$this->htheme_return_weight_style($mega_options['weight']).';
+							font-size:'.$mega_options['size'].';
+							text-transform:'.$mega_options['transform'].';
+							letter-spacing:'.$mega_options['spacing'].';
+							line-height:'.$mega_options['lineHeight'].';
+						}
+					';
+				break;
+				case 'mega_title':
+					$htheme_css .= '
+						.htheme_mega_item_content a{
+							color:'.$this->htheme_get_accent($mega_options['color']).';
+							font-family:'.$mega_options['family'].';
+							'.$this->htheme_return_weight_style($mega_options['weight']).';
+							font-size:'.$mega_options['size'].';
+							text-transform:'.$mega_options['transform'].';
+							letter-spacing:'.$mega_options['spacing'].';
+							line-height:'.$mega_options['lineHeight'].';
+							text-decoration:none;
+						}
+					';
+				break;
+				case 'mega_sub_content':
+					$htheme_css .= '
+						.htheme_mega_item_content a.htheme_mega_date,
+						.htheme_mega_item_content span{
+							color:'.$this->htheme_get_accent($mega_options['color']).';
+							font-family:'.$mega_options['family'].';
+							'.$this->htheme_return_weight_style($mega_options['weight']).';
+							font-size:'.$mega_options['size'].';
+							text-transform:'.$mega_options['transform'].';
+							letter-spacing:'.$mega_options['spacing'].';
+							line-height:'.$mega_options['lineHeight'].';
+							text-decoration:none;
+						}
+					';
+				break;
+			}
+		}
+
+		foreach($htheme_mega_styles as $i){
+			if(isset($i['backgroundSize'])):
+				$htheme_css .= '
+					.htheme_mega_' . $i['id'] . '{
+						background-size:'.$i['backgroundSize'].'										
+					}		
+				';
+			endif;
+			if(isset($i['underlineColor']) && $i['underlineTitle'] != 'no'):
+				$htheme_css .= '
+					.htheme_mega_' . $i['id'] . ' .htheme_mega_title{
+						border-bottom: 1px solid '.$i['underlineColor'].';							
+					}					
+				';
+			endif;
+			if(isset($i['fontPrimary']) && $i['fontPrimary'] != ''):
+				$htheme_css .= '
+					.htheme_mega_' . $i['id'] . ' .htheme_mega_title{
+						color:'.$i['fontPrimary'].' !important;					
+					}										
+				';
+			endif;
+			if(isset($i['fontSecondary']) && $i['fontSecondary'] != ''):
+				$htheme_css .= '
+					.htheme_mega_' . $i['id'] . ' .htheme_mega_item_content a,
+					.htheme_mega_' . $i['id'] . ' .htheme_mega_item_content .htheme_mega_date,
+					.htheme_mega_' . $i['id'] . ' .htheme_mega_item_content .htheme_mega_date span{
+						color:'.$i['fontSecondary'].' !important;					
+					}										
+				';
+			endif;
+			#BORDER
+			if(isset($i['borderColor']) && $i['border'] != 'no'):
+				$htheme_css .= '
+					.htheme_mega_' . $i['id'] . '{
+						border: 1px solid '.$i['borderColor'].';							
+					}					
+				';
+			endif;
+			#SHADOW
+			if(isset($i['shadowColor']) && $i['shadow'] != 'no'):
+				$htheme_css .= '
+					.htheme_mega_' . $i['id'] . '{
+						-webkit-box-shadow: 4px 4px 10px -1px rgba('.$this->htheme_hex_to_rgb($i['shadowColor']).',0.22);
+						-moz-box-shadow: 4px 4px 10px -1px rgba('.$this->htheme_hex_to_rgb($i['shadowColor']).',0.22);
+						box-shadow: 4px 4px 10px -1px rgba('.$this->htheme_hex_to_rgb($i['shadowColor']).',0.22);						
+					}					
+				';
+			endif;
+		}
+
 		#CUSTOM CSS
 		$htheme_css .= $htheme_custom_css;
 
@@ -1415,12 +1567,20 @@ class htheme_css{
 		$htheme_fonts_array = array();
 		$exclude_array = ['Arial', 'Verdana'];
 		$typography_fonts = $GLOBALS['htheme_global_object']['settings']['typography']['fonts'];
+		$mega_fonts = $GLOBALS['htheme_global_object']['settings']['megamenu']['fonts'];
 		$header_fonts = $GLOBALS['htheme_global_object']['settings']['header']['stylingOptions'];
 		$footer_fonts = $GLOBALS['htheme_global_object']['settings']['footer']['stylingOptions'];
 		$button_fonts = $GLOBALS['htheme_global_object']['settings']['styling']['buttons'];
 
 		#TYPOGRAPHY PUSH
 		foreach($typography_fonts as $font){
+			if(!in_array($font['family'], $exclude_array)){
+				array_push($htheme_fonts_array, $font['family'].':'.$font['weight']);
+			}
+		}
+
+		#MEGA PUSH
+		foreach($mega_fonts as $font){
 			if(!in_array($font['family'], $exclude_array)){
 				array_push($htheme_fonts_array, $font['family'].':'.$font['weight']);
 			}

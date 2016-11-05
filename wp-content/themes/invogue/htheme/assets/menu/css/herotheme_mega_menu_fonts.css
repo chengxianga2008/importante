@@ -1,0 +1,27 @@
+/*  :::::::::::::::::::::::::::::::::::::::: */
+/*  :::: HELLO FRIDAY THEME FONTS
+/*  :::::::::::::::::::::::::::::::::::::::: */
+
+@font-face {
+    font-family: 'icomoon';
+    src:url('icons/icons.eot?kzrsmw');
+    src:url('icons/icons.eot?kzrsmw#iefix') format('embedded-opentype'),
+    url('icons/icons.ttf?kzrsmw') format('truetype'),
+    url('icons/icons.woff?kzrsmw') format('woff'),
+    url('icons/icons.svg?kzrsmw#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.htheme_menu_close:after,
+.htheme_tag_holder:after,
+.htheme_enable_mega:after,
+.htheme_img_place:after,
+.htheme_overlay_close:after{
+    font-family: 'icomoon';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+}
+
