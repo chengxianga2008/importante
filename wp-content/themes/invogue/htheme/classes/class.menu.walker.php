@@ -121,13 +121,15 @@ class htheme_walker extends Walker{
 		$id       = $element->$id_field;
 		
 		// changed by jack
-		if($id == "1667"){
-			$element->title = "<strong>MY ACCOUNT</strong>";
+		if(is_user_logged_in()){
+			if($id == "1667"){
+				$element->title = "<strong>MY ACCOUNT</strong>";
+			}
 		}
 		
 		
 		if(!is_user_logged_in()){
-			if($id == "1667" || $id == "1485"){
+			if($id == "1485"){
 				$this->clear_children($children_elements, $id);
 				return;
 			}
