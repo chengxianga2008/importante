@@ -144,7 +144,7 @@ class WC_Swatches_Product_Attribute_Images {
 			<div id="swatch-photo" class="<?php echo sanitize_title( $this->meta_key ); ?>-photo">
 				<label><?php _e( 'Thumbnail', 'woocommerce' ); ?></label>
 				<div id="product_attribute_thumbnail_<?php echo $this->meta_key; ?>" style="float:left;margin-right:10px;">
-					<img src="<?php echo $woocommerce->plugin_url() . '/assets/images/placeholder.png' ?>" width="<?php echo $this->image_width; ?>px" height="<?php echo $this->image_height; ?>px" />
+					<img src="<?php echo apply_filters( 'woocommerce_placeholder_img_src', WC()->plugin_url() . '/assets/images/placeholder.png' ); ?>" width="<?php echo $this->image_width; ?>px" height="<?php echo $this->image_height; ?>px" />
 				</div>
 				<div style="line-height:60px;">
 					<input type="hidden"  class="upload_image_id" id="product_attribute_<?php echo $this->meta_key; ?>" name="product_attribute_meta[<?php echo $this->meta_key; ?>][photo]" />

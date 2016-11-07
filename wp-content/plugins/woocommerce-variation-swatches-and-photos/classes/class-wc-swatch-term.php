@@ -40,7 +40,7 @@ class WC_Swatch_Term {
 		$this->thumbnail_id = get_woocommerce_term_meta( $this->term_id, $this->meta_key() . '_photo', true );
 
 		$this->type = $type;
-		$this->thumbnail_src = WC()->instance()->plugin_url() . '/assets/images/placeholder.png';
+		$this->thumbnail_src = apply_filters( 'woocommerce_placeholder_img_src', WC()->plugin_url() . '/assets/images/placeholder.png' );
 		$this->color = '#FFFFFF';
 
 		if ( $type == 'photo' ) {
@@ -49,10 +49,10 @@ class WC_Swatch_Term {
 				if ( $imgsrc && is_array( $imgsrc ) ) {
 					$this->thumbnail_src = current( $imgsrc );
 				} else {
-					$this->thumbnail_src = WC()->instance()->plugin_url() . '/assets/images/placeholder.png';
+					$this->thumbnail_src = apply_filters( 'woocommerce_placeholder_img_src', WC()->plugin_url() . '/assets/images/placeholder.png' );
 				}
 			} else {
-				$this->thumbnail_src = WC()->instance()->plugin_url() . '/assets/images/placeholder.png';
+				$this->thumbnail_src = apply_filters( 'woocommerce_placeholder_img_src', WC()->plugin_url() . '/assets/images/placeholder.png' );
 			}
 		} elseif ( $type == 'color' ) {
 			$this->color = $color;
@@ -89,7 +89,7 @@ class WC_Swatch_Term {
 			$picker .= '<a href="' . $href . '" style="text-indent:-9999px;width:' . $this->width . 'px;height:' . $this->height . 'px;background-color:' . apply_filters( 'woocommerce_swatches_get_swatch_color', $this->color, $this->term_slug, $this->taxonomy_slug, $this ) . ';" title="' . $this->term_label . '" class="' . $anchor_class . '">' . $this->term_label . '</a>';
 		} elseif ( $placeholder ) {
 			if ( $placeholder_src == 'default' ) {
-				$src = WC()->instance()->plugin_url() . '/assets/images/placeholder.png';
+				$src = apply_filters( 'woocommerce_placeholder_img_src', WC()->plugin_url() . '/assets/images/placeholder.png' );
 			} else {
 				$src = $placeholder_src;
 			}

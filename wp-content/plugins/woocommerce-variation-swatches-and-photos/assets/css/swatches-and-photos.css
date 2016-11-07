@@ -1,3 +1,6 @@
+.swatch-control {
+    overflow:hidden;
+}
 
 .swatch-control select {
 	display: none !important;
@@ -74,6 +77,7 @@ div.swatch-wrapper.disabled, div.swatch-wrapper.disabled a, .radio-select .disab
 
 div.swatch-label {
 	margin-bottom: 8px;
+    clear:left;
 }
 
 /*---------------------------------------------------------------------------------------------

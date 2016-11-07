@@ -234,6 +234,7 @@
 		$form
 			// On clicking the reset variation button
 			.on('click', '.reset_variations', function () {
+				$form.find('.swatch-label').html("&nbsp;");
 				$form.find('.select-option').removeClass('selected');
 				$form.find('.radio-option').prop('checked', false);
 				return false;

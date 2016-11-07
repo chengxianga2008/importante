@@ -1,4 +1,12 @@
 *** WooCommerce Variation Swatches and Photos***
+2016.10.05 - version 2.1.7
+    * Update:  Use the WooCommerce Placeholder image from core using filters rather than hardcoded.
+
+2016.10.04 - version 2.1.6
+    * Update:  Correctly hide labels when clicking the clear / reset button.
+    * Update:  Correctly show label below swatches rather than to the right when the Below option is selected.
+    * Update:  Version bump for assets, tested to.
+
 2016.08.04 - version 2.1.5
     * Update:  Added "Label Below" option.
 

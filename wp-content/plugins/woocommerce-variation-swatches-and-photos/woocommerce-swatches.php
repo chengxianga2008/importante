@@ -4,11 +4,11 @@
   Plugin Name: WooCommerce Variation Swatches and Photos
   Plugin URI: http://woothemes.com/woocommerce/
   Description: WooCommerce Swatches and Photos allows you to configure colors and photos for shoppers on your site to use when picking variations. Requires WooCommerce 1.5.7+
-  Version: 2.1.5
+  Version: 2.1.7
   Author: Lucas Stark
   Author URI: http://lucasstark.com
   Requires at least: 3.5
-  Tested up to: 4.5.3
+  Tested up to: 4.6.1
 
   Copyright: © 2009-2016 Lucas Stark.
   License: GNU General Public License v3.0
@@ -51,7 +51,7 @@ if ( is_woocommerce_active() ) {
 
 				public function __construct() {
 
-					define( 'WC_SWATCHES_VERSION', '2.0.0' );
+					define( 'WC_SWATCHES_VERSION', '2.0.1' );
 
 					require 'woocommerce-swatches-template-functions.php';
 
@@ -99,8 +99,8 @@ if ( is_woocommerce_active() ) {
 					global $pagenow, $wp_scripts;
 
 					if ( !is_admin() ) {
-						wp_enqueue_style( 'swatches-and-photos', $this->plugin_url() . '/assets/css/swatches-and-photos.css' );
-						wp_enqueue_script( 'swatches-and-photos', $this->plugin_url() . '/assets/js/swatches-and-photos.js', array('jquery'), '1.5.0', true );
+						wp_enqueue_style( 'swatches-and-photos', $this->plugin_url() . '/assets/css/swatches-and-photos.css', array(), WC_SWATCHES_VERSION );
+						wp_enqueue_script( 'swatches-and-photos', $this->plugin_url() . '/assets/js/swatches-and-photos.js', array('jquery'), WC_SWATCHES_VERSION, true );
 
 						$data = array(
 						    'ajax_url' => admin_url( 'admin-ajax.php' )
@@ -119,7 +119,7 @@ if ( is_woocommerce_active() ) {
 
 
 						$data = array(
-						    'placeholder_img_src' => WC()->plugin_url() . '/assets/images/placeholder.png'
+						    'placeholder_img_src' => apply_filters( 'woocommerce_placeholder_img_src', WC()->plugin_url() . '/assets/images/placeholder.png' )
 						);
 
 						wp_localize_script( 'swatches-and-photos-admin', 'wc_swatches_params', $data );
