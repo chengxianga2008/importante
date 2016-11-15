@@ -1,6 +1,8 @@
 <?php $htheme_meta_layout = get_post_meta( $post->ID, 'htheme_meta_layout', true ); ?>
 <?php $htheme_meta_title = get_post_meta( $post->ID, 'htheme_meta_title', true ); ?>
-<?php $htheme_meta_devider = get_post_meta( $post->ID, 'htheme_meta_title_devider', true ); ?>
+<?php //$htheme_meta_devider = get_post_meta( $post->ID, 'htheme_meta_title_devider', true ); 
+	  $htheme_meta_devider = $GLOBALS['htheme_global_object']['settings']['lookbook']['divider'];
+?>
 <?php $htheme_meta_excerpt = get_post_meta( $post->ID, 'htheme_meta_sub', true ); ?>
 <?php $htheme_meta_devider_color = get_post_meta( $post->ID, 'htheme_meta_title_devider_color', true ); ?>
 <?php if($htheme_meta_layout == '3' || !$htheme_meta_layout){ ?>

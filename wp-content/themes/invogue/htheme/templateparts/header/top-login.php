@@ -58,23 +58,22 @@
 	}
 ?>
 <?php if($social_count > 0 && $htheme_show_social == 'true'){ ?>
-<div class="htheme_share htheme_box_toggle" data-toggle="open">
+<div class="htheme_share htheme_box_toggle">
+	<?php
+		$count = 1;
+		foreach($htheme_social_items as $social){
+			if($social['status'] == 'true'){
+	?>
+	<a href="<?php echo esc_url($social['url']); ?>" target="<?php echo esc_attr($social['target']); ?>" >
 	<?php esc_html_e('Follow us', 'invogue'); ?>
-	<div class="htheme_small_white_box htheme_white_box">
-		<div class="htheme_box_inner">
-			<?php
-				$count = 1;
-				foreach($htheme_social_items as $social){
-					if($social['status'] == 'true'){
-			?>
-					<a href="<?php echo esc_url($social['url']); ?>" target="<?php echo esc_attr($social['target']); ?>" class="htheme_box_item htheme_icon_social_<?php echo esc_attr($social['label']); ?>" data-id="<?php echo esc_attr($count); ?>"></a>
+	
+				<span  class="htheme_box_item htheme_icon_social_<?php echo esc_attr($social['label']); ?>" data-id="<?php echo esc_attr($count); ?>"></span>
 			<?php
 						$count++;
-					}
-				}
-			?>
-		</div>
-	</div>
+			}
+		}
+	?>
+	</a>
 </div>
 <?php } ?>
 

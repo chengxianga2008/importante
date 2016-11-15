@@ -14,7 +14,7 @@ global $wp_query, $wp_rewrite;
 
 #VARAIBLES
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-
+$htheme_meta_devider = $GLOBALS['htheme_global_object']['settings']['lookbook']['divider'];
 $big = 999999999; // need an unlikely integer
 
 #PAGER ARGS
@@ -50,6 +50,11 @@ if($htheme_single_layout == 'standard_sidebar'){
 				<!-- TITLE DEFAULT -->
 				<div class="htheme_title_container" data-title-type="default">
 					<div class="htheme_title"><h1><?php esc_html(single_post_title()); ?></h1></div>
+					<?php if($htheme_meta_devider != '' && $htheme_meta_devider != 'none'){ ?>
+						<div class="htheme_svg_holder">
+							<?php echo wp_remote_fopen(get_template_directory_uri().'/htheme/assets/svg/htheme_'.$htheme_meta_devider.'.svg'); ?>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

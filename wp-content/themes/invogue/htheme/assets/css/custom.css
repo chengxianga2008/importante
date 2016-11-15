@@ -26,3 +26,23 @@ a.btn.read-more-btn{
 a.btn.read-more-btn:hover{
 	background-color: #333;
 }
+
+.htheme_box_item.htheme_icon_social_instagram{
+	margin: 0;
+    opacity: 1;
+    display: inline-block;
+    padding: 0;
+    width: auto;
+    margin-left: 2px;
+    margin-bottom: -2px;
+}
+
+.htheme_box_item.htheme_icon_social_instagram:hover:before{
+	color: #333 !important;
+	background-color: #fff !important;
+}
+
+.htheme_share a{
+	text-decoration: none;
+	color: #009bb4;
+}
