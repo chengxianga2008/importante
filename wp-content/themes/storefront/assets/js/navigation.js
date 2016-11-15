@@ -63,4 +63,21 @@
 			jQuery( this ).parents().toggleClass( 'focus' );
 		});
 	});
+
+	if ( is_touch_device() && jQuery( window ).width() > 767 ) {
+		jQuery( '.main-navigation ul ul, .secondary-navigation ul ul' ).addClass( 'sub-menu--is-touch-device' );
+
+		// Ensure the dropdowns close when user taps outside the site header
+		jQuery( '.site-content, .header-widget-region, .site-footer' ).on( 'click', function() {
+			jQuery( '.main-navigation li, .secondary-navigation li, .site-header-cart li' ).removeClass( 'focus' );
+		});
+	}
+
+	/**
+	 * Check if the device is touch enabled
+	 * @return Boolean
+	 */
+	function is_touch_device() {
+		return 'ontouchstart' in window || navigator.maxTouchPoints;
+	}
 } )();

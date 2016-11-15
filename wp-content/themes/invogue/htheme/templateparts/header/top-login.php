@@ -59,7 +59,7 @@
 ?>
 <?php if($social_count > 0 && $htheme_show_social == 'true'){ ?>
 <div class="htheme_share htheme_box_toggle" data-toggle="open">
-	<?php esc_html_e('SOCIAL', 'invogue'); ?>
+	<?php esc_html_e('Follow us', 'invogue'); ?>
 	<div class="htheme_small_white_box htheme_white_box">
 		<div class="htheme_box_inner">
 			<?php
