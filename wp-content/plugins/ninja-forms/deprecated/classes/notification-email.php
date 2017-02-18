@@ -351,7 +351,6 @@ class NF_Notification_Email extends NF_Notification_Base_Type
 		if ( is_array( $to ) AND !empty( $to ) ){
 
             $to = explode( ",", $this->flatten_array_recursive( ',', $to ) );
-
 			wp_mail( $to, $subject, $message, $headers, $attachments );
 		}
 
