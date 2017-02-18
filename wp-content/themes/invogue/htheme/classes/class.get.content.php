@@ -400,6 +400,15 @@ class htheme_getcontent{
 									$html .= esc_html__('Message', 'invogue');
 								$html .= '</label>';
 							$html .= '</div>';
+                                                        if( function_exists( 'gglcptch_display' ) ) {
+                                                        $html .= '<div class="htheme_col_12 htheme_form_field_item">';
+								$html .= gglcptch_display();
+								
+							$html .= '</div>';
+                                                   
+                                                        };
+                                                        
+
 							$html .= '<div class="htheme_form_status_message"></div>';
 							$html .= '<div class="htheme_btn_style_1" id="htheme_button_submit">SEND</div>';
 						$html .= '</div>';
