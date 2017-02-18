@@ -56,17 +56,15 @@ final class NF_Actions_Email extends NF_Abstracts_Action
         } else {
             $message = $this->format_plain_text_message( $action_settings[ 'email_message_plain' ] );
         }
-        
-        
-//         $sent = wp_mail(
-//             $action_settings['to'],
-//             $action_settings['email_subject'],
-//             $message,
-//             $headers,
-//             $attachments
-//         );
 
-        $sent = wp_mail("chengxianga2008@yahoo.com","test","test",$headers);
+        
+        $sent = wp_mail(
+            $action_settings['to'],
+            $action_settings['email_subject'],
+            $message,
+            $headers,
+            $attachments
+        );
 
         $data[ 'actions' ][ 'email' ][ 'to' ] = $action_settings['to'];
         $data[ 'actions' ][ 'email' ][ 'sent' ] = $sent;
