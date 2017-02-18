@@ -108,9 +108,25 @@ class htheme_forms{
 				"From:" .$user_name. " " .$user_last. " <".$form_data['user_email'].'>',
 				"Bcc:".$admin_email,
 			);
+			
+			$content_here = <<<DOC
+<html>
+<body>  
+	
+	<br>
+	<b>Name:</b>  {$user_name} {$user_last} <br>
+	<b>Email Address:</b>  {$user_email} <br>
+	<b>Message Type:</b> {$user_message_type} <br>
+	<b>Message:</b> {$user_message} <br>
+	<br>
 
-			#SEND EMAIL
-			wp_mail($user_email, $subject, $user_message, $headers, array());
+</body>
+</html>
+DOC;
+
+			add_filter( 'wp_mail_content_type', 'set_html_content_type' );
+			wp_mail($admin_email, $subject, $content_here);
+			remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
 
 			#RETURN ARRAY
 			$return_array = array(
