@@ -91,7 +91,7 @@ class htheme_forms{
 		if($status){
 
 			#VARIABLES
-			$subject = $subjectLine;
+			$subject = "Importante Contact Enquiry";
 			$admin_email = get_option( 'admin_email' );
 			$user_name = $form_data['user_name'];
 			$user_last = $form_data['user_last'];
