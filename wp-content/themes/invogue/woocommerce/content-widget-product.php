@@ -30,6 +30,7 @@ global $product; ?>
 		<div class="htmeme_sidebar_post_image" style="background-image:url(<?php echo esc_url($image[0]); ?>);"></div>
 		<div class="htheme_sidebar_post_heading">
 			<?php echo esc_html($product->get_title()); ?>
+			<?php if(is_user_logged_in()){?>
 			<span>
 			<?php if($product->product_type == 'variable'){ ?>
 				<?php echo esc_html(get_woocommerce_currency_symbol(get_option('woocommerce_currency')) . $product->min_variation_price); ?>
@@ -37,6 +38,7 @@ global $product; ?>
 				<?php echo $product->get_price_html(); ?>
 			<?php } ?>
 			</span>
+			<?php } ?>
 		</div>
 	</a>
 </li>
